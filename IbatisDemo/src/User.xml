@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE sqlMap        
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"        
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+
+	<typeAlias alias="User" type="ibatis.model.User" />
+	<typeAlias alias="ParameterMap" type="ibatis.util.ParameterMap" />
+	<typeAlias alias="LoginInfo" type="ibatis.model.LoginInfo" />
+
+
+	
+
+	<select id="getLoginInfo" resultClass="LoginInfo"
+		parameterClass="ibatis.util.ParameterMap">
+		select *
+		from LOGININFO
+		where IP=#IP:VARCHAR#
+	</select>
+
+
+
+
+	<select id="getAllUsers" resultClass="User">
+		select *
+		from users
+	</select>
+
+	<select id="getUsers" resultClass="User" parameterClass="java.lang.String">
+		select *
+		from users
+		where userName=#VARCHAR#
+	</select>
+
+	<select id="getUserByUserNameAndMobile" resultClass="User"
+		parameterClass="ibatis.util.ParameterMap">
+		select *
+		from users
+		where userName=#userName:VARCHAR# and
+		mobile =#mobile:VARCHAR#
+	</select>
+
+	<insert id="addUser" parameterClass="ParameterMap">
+		insert into
+		users(userName,password,mobile,email,userId)
+		values(#userName:VARCHAR#,#password:VARCHAR#,#mobile:VARCHAR#,#email:VARCHAR#,#userId:VARCHAR#)
+	</insert>
+
+
+
+</sqlMap>  

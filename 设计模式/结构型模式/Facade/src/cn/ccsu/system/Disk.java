@@ -1,0 +1,15 @@
+package cn.ccsu.system;
+
+public class Disk {
+
+	public Disk() {
+		
+	}
+
+	public boolean read(){
+//		System.out.println("∂¡»°”≤≈Ã...");
+		return true;
+		
+	}
+
+}

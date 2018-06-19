@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ccsu.mapper.MonthlyRecordMapper">
+
+
+	<!-- List<MonthlyRecord> selectMonthlyRecord(Map<String, Object> params); -->
+	<select id="selectMonthlyRecord" resultType="cn.ccsu.entity.MonthlyRecord">
+		select * from MonthlyRecord
+		<where>
+			<if test="productId != null">
+				productId = #{productId}
+			</if>
+			<if test="salesmanId != null">
+				and salesmanId = #{salesmanId}
+			</if>
+			<if test="month != null">
+				and month = #{month}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- void deleteMonthlyRecord(Map<String, Object> params); -->
+	<delete id="deleteMonthlyRecord">
+		delete from MonthlyRecord
+		where productId = #{productId}
+		and salesmanId = #{salesmanId}
+		and month = #{month}
+		<!-- <where>
+			<if test="productId != null">
+				productId = #{productId}
+			</if>
+			<if test="salesmanId != null">
+				and salesmanId = #{salesmanId}
+			</if>
+			<if test="month != null">
+				and month = #{month}
+			</if>
+		</where> -->
+	</delete>
+
+	<!-- void addMonthlyRecord(MonthlyRecord record); -->
+	<insert id="addMonthlyRecord">
+		INSERT INTO
+		MonthlyRecord(productId,salesmanId,month,number,saleroom)
+		VALUES
+		(#{productId},#{salesmanId},#{month},#{number},#{saleroom})
+	</insert>
+
+	<!-- void updateMonthlyRecord(MonthlyRecord record); -->
+	<update id="updateMonthlyRecord">
+		update MonthlyRecord
+		<set>
+			<if test="productId != null">productId = #{productId},</if>
+			<if test="salesmanId != null">salesmanId = #{salesmanId},</if>
+			<if test="month != null">month = #{month},</if>
+			<if test="number != null">number = #{number},</if>
+			<if test="number != null">saleroom = #{saleroom}</if>
+		</set>
+		where recordId = #{recordId}
+	</update>
+
+</mapper>
+

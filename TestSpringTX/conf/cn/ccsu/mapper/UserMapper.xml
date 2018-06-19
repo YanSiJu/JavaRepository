@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ccsu.dao.UserMapper">
+
+	<!-- int updateBalance(@Param("userName") String userName, @Param("price") 
+		Integer price) -->
+	<update id="updateBalance">
+		update user SET balance = balance - #{price}
+		where
+		userName = #{userName}
+	</update>
+
+	<!-- Integer queryBalance(String userName) -->
+	<select id="queryBalance" resultType="java.lang.Integer">
+		select balance
+		from user
+		where
+		userName = #{userName}
+	</select>
+
+</mapper>

@@ -1,0 +1,33 @@
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:active {
+	text-decoration: none;
+	color: 66FF00;
+}
+
+#submit {
+	width: 80px;
+	background-color:#E0E0E0;
+	color: #CC3333;
+	margin-left: 60px;
+	height: 30px;
+	font-size: 15px;
+}
+
+#div_1 {
+	border: 1px solid grey;
+	width: 290px;
+	height: 260px;
+	margin: 100px;
+	margin-left: 450px;
+}

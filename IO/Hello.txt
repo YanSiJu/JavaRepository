@@ -1,0 +1,30 @@
+Java Linux Unix 
+Hello,spring!!  Fire!!
+
+
+
+The Java language derives much of its syntax from C and C++, but its object model is simpler than that of the latter and it has fewer low-level facilities. Java applications are typically compiled to bytecode (called class files) that can be executed by a JVM (Java Virtual Machine), independent of computer architecture. The JVM often further compiles code to native machine code to optimize performance.
+
+The JVM manages memory with the help of a garbage collector (see garbage-collection) in order to handle object removal from memory when objects are no longer in use. Java's typing discipline is static, strong, safe, nominative, and manifest. Java supports features such as reflection and interfacing with C and C++ via the JNI.
+
+Java is designed to have as few implementation dependencies as possible, intended to allow application developers to write once, run anywhere (code that executes on one platform does not need to be recompiled to run on another). Java was originally developed by James Gosling at Sun Microsystems (which merged with Oracle Corporation on April 20, 2009) and was released in 1995 as a core component of Sun Microsystems' Java platform.
+
+The Java platform is the name given by Sun (now Oracle) to computing systems that have installed tools for developing and running Java programs. The platform features a wide variety of tools that can help developers work efficiently with the Java programming language.
+
+The platform consists of two essential software packages:
+
+Java Runtime Environment (JRE): required to run Java applications and applets.
+Java Development Kit (JDK): required to develop Java applications and applets. The JDK comes with a JRE.
+In this section, we will explore in further detail what these two software components of the Java platform do.
+
+Background
+
+The main reference implementation of Java is open source (the OpenJDK) and is supported by major companies including Oracle, Apple, SAP, and IBM.
+
+Very few computers can run Java programs directly. Therefore, the Java environment is normally made available by installing a suitable software component. On Windows computers, this is usually done by downloading the free Java Runtime Environment (JRE) from java.com. On Macintosh computers, the user is prompted to download Java when an application requiring it is started. On Linux-like systems, Java is typically installed via the package manager.
+
+Developers frequently need additional tools, which are available in the free Java Development Kit, which for Windows and Mac must be downloaded from Oracle and installed manually.
+
+Java is compiled into bytecode, which is compiled by the JVM into native machine code. The compilation is done just-in-time (JIT). This was initially viewed as a performance hit, but JVM and JIT compilation improvements have made this less of a concern. In some cases, the JVM may even be faster than native code compiled to target an older version of a processor for backward-compatibility reasons.
+
+Note: Other vendors exist, though almost all have license fees. For Linux and other platforms, consult the operating system documentation.

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>prevent form Default</title>
+</head>
+<body>
+	<form name="loginForm" action="http://www.google.com.hk" method="get">
+    <button type="submit" value="Submit" id="submit">Submit</button>
+	</form>
+
+	<script>
+    var submitBtn = document.getElementById("submit");
+
+    submitBtn.onclick = function (event) {
+        //alert("preventDefault!");
+        return false;
+    };
+	</script>
+	
+</body>
+</html>
+

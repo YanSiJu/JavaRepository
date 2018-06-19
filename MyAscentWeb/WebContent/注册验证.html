@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title>AscentSys医药商务系统</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="Your website description goes here" />
+		<meta name="keywords" content="your,keywords,goes,here" />
+
+	<script language="javascript">
+function check(){
+	if (form.username.value == "") {
+		alert("用户名不能为空！");
+		form.username.focus();
+		return false;
+	}
+	if (form.password.value == "") {
+		alert("请输入密码 ！");
+		form.password.focus();
+		return false;
+	}
+	if (form.password2.value == "") {
+		alert("请再次输入密码 ！");
+		form.password2.focus();
+		return false;
+	}
+	if (form.password.value != form.password2.value) {
+		alert("两次输入的密码不一致 ！");
+		form.password2.focus();
+		return false;
+	}
+	if (form.email.value == "") {
+		alert("请输入邮件 ！");
+		form.email.focus();
+		return false;
+	}
+	var regm = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;//验证Mail的正则表达式,^[a-zA-Z0-9_-]:开头必须为字母,下划线,数字,
+	if (form.email.value != "" && !form.email.value.match(regm)) {
+		alert("邮件格式不对，检查后重新输入！");
+		form.email.focus();
+		return false;
+	}
+}
+</script>
+	</head>
+	<body>
+		<form name="form" method="post" action="" />
+			<table width="70%" class="mars" cellspacing="1" cellpadding="0" width="100%" border="0">
+				<tbody>
+					<tr>
+						<td class="item" width="41%">
+							<div align="right">用户名:</div>
+						</td>
+						<td width="7%"></td>
+						<td width="52%">
+							<input type="text" name="username" id="username">&nbsp;&nbsp; 
+							<font color="red">*</font>
+							<div id="usernameCheckDiv" class="warning"></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="item">
+							<div align="right">密码:</div>
+						</td>
+						<td width="7%"></td>
+						<td>
+							<input type="password" name="password" id="password">&nbsp;&nbsp; 
+							<font color="red">*</font>
+						</td>
+					</tr>
+					<tr>
+						<td class="item">
+							<div align="right">密码确认:</div>
+						</td>
+						<td width="7%"></td>
+						<td>
+							<input type="password" name="password2" id="password2">&nbsp;&nbsp; 
+							<font color="red">*</font>
+						</td>
+					</tr>
+					<tr>
+						<td class="item">
+							<div align="right">Email:</div>
+						</td>
+						<td width="7%"></td>
+						<td>
+							<input type="text" name="email" id="email">&nbsp;&nbsp; 
+							<font color="red">*</font>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" align="center">
+						<input type="submit" value="注册" onClick="return check();" />
+							<input type="reset" value="取消" />
+						</td>
+					</tr>
+			</table>
+		</form>
+	</body>
+</html>

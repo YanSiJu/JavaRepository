@@ -1,0 +1,20 @@
+＜!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"＞
+＜HTML＞
+＜HEAD＞
+＜TITLE＞在JSP中使用JavaBean＜/TITLE＞
+＜/HEAD＞
+＜BODY＞
+＜CENTER＞
+＜TABLE BORDER=5＞
+  ＜TR＞＜TH CLASS="TITLE"＞
+      在JSP中使用JavaBean＜/TABLE＞
+＜/CENTER＞
+＜P＞
+＜jsp:useBean id="primeTable" class="hall.NumberedPrimes" /＞
+＜jsp:setProperty name="primeTable" property="numDigits" /＞
+＜jsp:setProperty name="primeTable" property="numPrimes" /＞
+Some ＜jsp:getProperty name="primeTable" property="numDigits" /＞ 
+digit primes: 
+＜jsp:getProperty name="primeTable" property="numberedList" /＞
+＜/BODY＞
+＜/HTML＞

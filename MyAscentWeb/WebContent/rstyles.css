@@ -1,0 +1,6 @@
+  h1 {color: red; font-style: italic}
+
+ol li {list-style: upper-roman}/*大写罗马数字*/
+ol ol li {list-style: upper-alpha}/*大写字母*/
+ol ol ol li {list-style: decimal}/*阿拉伯数字*/
+ol ol ol ol li {list-style: lower-alpha}/*小写字母*/

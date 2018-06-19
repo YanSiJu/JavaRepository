@@ -1,0 +1,586 @@
+1.适配器模式	2
+A. UML图	2
+B. 结构图	2
+C. 具体代码实现	2
+D. 小结	5
+2.桥接模式	5
+A.UML图	5
+B.结构图	5
+C.具体代码实现	5
+D.小结	11
+3.装饰模式	12
+A.UML图	12
+B.结构图	12
+C.具体代码实现	12
+D.小结	17
+4.外观模式	18
+A.UML图	18
+B.结构图	18
+C.具体代码实现	18
+D.小结	24
+5.代理模式	24
+A.UML图	24
+B.结构图	24
+C.具体代码实现	24
+D.小结	27
+
+1.适配器模式
+A.UML图
+B.结构图
+C.具体代码实现
+package cn.csu.bean;
+
+public abstract class AbstractGraph {
+
+	public abstract void draw();
+
+}
+
+package cn.csu.bean;
+
+public class Adapter extends AbstractGraph {
+
+	private Angle angle;
+
+	public Adapter(Angle angle) {
+		this.angle = angle;
+	}
+
+	@Override
+	public void draw() {
+		angle.drawAngle();
+	}
+
+}
+
+package cn.csu.bean;
+
+public class Angle {
+
+	public void drawAngle() {
+		System.out.println("Draw Angle");
+	}
+
+}
+
+
+package cn.csu.bean;
+
+public class Line extends AbstractGraph {
+
+	@Override
+	public void draw() {
+		System.out.println("Draw Line");
+	}
+}
+
+package cn.csu.bean;
+public class Rectangle extends AbstractGraph {
+
+	@Override
+	public void draw() {
+		System.out.println("Draw Rectangle");
+	}
+
+}
+
+
+package cn.csu.bean;
+
+public class Square extends AbstractGraph {
+
+	@Override
+	public void draw() {
+		System.out.println("Draw Square");
+	}
+
+}
+
+
+
+
+
+
+
+
+D.小结
+适配器模式可以让原本不兼容的接口在一起工作，可以解决开发过程中团队的接口不兼容的问题。
+2.桥接模式
+A.UML图
+B.结构图
+C.具体代码实现
+package cn.csu.bean;
+
+import cn.csu.service.IBehavior;
+
+public abstract class AbstractBird {
+
+	IBehavior behavior;
+	
+	public abstract void display();
+
+	public void setBehavior(IBehavior behavior) {
+		this.behavior = behavior;
+	}
+
+	public IBehavior getBehavior() {
+		return behavior;
+	} 
+
+}
+
+package cn.csu.bean;
+
+public class Penguin extends AbstractBird {
+
+	@Override
+	public void display() {
+		this.getBehavior().bahave("Penguin");	}
+
+}
+
+package cn.csu.bean;
+
+public class Pigeon extends AbstractBird {
+
+	@Override
+	public void display() {
+
+		this.getBehavior().bahave("Pigeon");
+	}
+
+}
+
+
+
+package cn.csu.service;
+
+public interface IBehavior {
+
+	void bahave(String birdType);
+}
+
+
+
+
+
+
+
+package cn.csu.service.impl;
+
+import cn.csu.service.IBehavior;
+
+public class Swim implements IBehavior {
+
+	@Override
+	public void bahave(String birdType) {
+		if ("Pigeon".equalsIgnoreCase(birdType)) {
+			System.out.println("\n" + birdType + " cannot swim.");
+		} else if ("Penguin".equalsIgnoreCase(birdType)) {
+			System.out.println("\n" + birdType + " is swimming");
+		}
+
+	}
+
+}
+
+
+
+package cn.csu.service.impl;
+
+import cn.csu.service.IBehavior;
+
+public class Fly implements IBehavior {
+
+	@Override
+	public void bahave(String birdType) {
+		if ("Pigeon".equalsIgnoreCase(birdType)) {
+			System.out.println("\n" + birdType + " is flying  quikly");
+		} else if ("Penguin".equalsIgnoreCase(birdType)) {
+			System.out.println("\n" + birdType + " is flying  slowly  and laigh");
+		}
+
+	}
+
+}
+
+
+package cn.csu.test;
+
+import cn.csu.bean.AbstractBird;
+import cn.csu.bean.Penguin;
+import cn.csu.bean.Pigeon;
+import cn.csu.service.impl.Fly;
+import cn.csu.service.impl.Swim;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		AbstractBird b = new Pigeon();
+		
+		b.setBehavior(new Fly());
+		b.display();
+	
+		b.setBehavior(new Swim());
+		b.display();
+		
+		
+		b = new Penguin();
+		
+		b.setBehavior(new Fly());
+		b.display();
+	
+		b.setBehavior(new Swim());
+		b.display();
+	
+	}
+}
+
+D.小结
+桥接模式分离了抽象和具体实现，可以让两个维度自由变化，不受影响，同时也可以动态地进行组合，比较灵活。
+
+
+3.装饰模式
+A.UML图
+B.结构图
+C.具体代码实现
+package cn.ccsu.bean;
+
+public class AbstractDrink {
+
+	private Double prize;
+
+	public Double getPrize() {
+		return prize;
+	}
+
+	public void setPrize(Double prize) {
+		this.prize = prize;
+	}
+}
+
+
+package cn.ccsu.bean;
+
+public class Decorator extends AbstractDrink {
+
+	protected AbstractDrink d;
+
+	public void raisePrize() {
+		this.setPrize(this.getPrize() + d.getPrize());
+	}
+}
+
+
+package cn.ccsu.bean;
+
+public abstract class Coffee extends AbstractDrink {
+
+}
+
+
+
+package cn.ccsu.bean;
+
+public class Juice extends Decorator {
+
+	public static final double prize = 3;
+	
+	public Juice(AbstractDrink d) {
+		this.d = d;
+		this.setPrize(prize);
+		raisePrize();
+	}
+
+}
+
+
+package cn.ccsu.bean;
+
+public class LanShan extends Coffee {
+
+	public static final double prize = 8;
+
+	public LanShan() {
+		this.setPrize(prize);
+	}
+}
+
+
+
+
+package cn.ccsu.bean;
+
+public class Latte extends Coffee {
+
+	public static final double prize = 10;
+
+	public Latte() {
+		this.setPrize(prize);
+	}
+		
+}
+
+
+package cn.ccsu.bean;
+
+public class Milk extends Decorator {
+	
+	public static final double prize = 2;
+	
+	public Milk(AbstractDrink d) {
+		this.d = d;
+		this.setPrize(prize);
+		raisePrize();
+	}
+	
+}
+
+package cn.ccsu.test;
+
+import cn.ccsu.bean.Coffee;
+import cn.ccsu.bean.Decorator;
+import cn.ccsu.bean.Juice;
+import cn.ccsu.bean.LanShan;
+import cn.ccsu.bean.Latte;
+import cn.ccsu.bean.Milk;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		Coffee coffee = new Latte();
+		Decorator juice = new Juice(coffee);
+		System.out.println("加了橙汁拿铁咖啡价格为:" + juice.getPrize());
+
+		coffee = new LanShan();
+		Decorator milk = new Milk(coffee);
+		System.out.println("加了牛奶蓝山咖啡价格为:" + milk.getPrize());
+
+		juice = new Juice(milk);
+		System.out.println("加了橙汁加了牛奶蓝山咖啡价格为:" + juice.getPrize());
+	}
+}
+
+
+D.小结
+
+1.当系统不能使用继承进行扩展时，可以考虑采用装饰模式对对象进行扩展，从而拥有更多的行为。
+2.可以用多个装饰者装饰同一个对象，从而使对象拥有更多的行为。
+3.可以动态地给一个对象增加行为，也可以动态地撤销。
+4.外观模式
+A.UML图
+B.结构图
+C.具体代码实现
+package cn.ccsu.system;
+
+public class CPU {
+
+	public CPU() {
+
+	}
+
+	public boolean run() {
+
+		return true;
+	}
+
+}
+
+
+
+package cn.ccsu.system;
+
+public class Storage {
+
+	public Storage() {
+
+	}
+
+	public boolean check() {
+//		System.out.println("检测内存....");
+		return true;
+		
+	}
+
+}
+
+
+package cn.ccsu.system;
+
+public class OS {
+
+	public OS() {
+
+	}
+
+	public boolean load() {
+//		System.out.println("操作系统载入...");
+		return true;
+
+	}
+}
+
+
+package cn.ccsu.system;
+
+public class Disk {
+
+	public Disk() {
+		
+	}
+
+	public boolean read(){
+//		System.out.println("读取硬盘...");
+		return true;
+		
+	}
+
+}
+
+
+package cn.ccsu.system;
+
+public class Facade {
+
+	private CPU cpu;
+	private OS os;
+	private Storage str;
+	private Disk disk;
+
+	public Facade() {
+		cpu = new CPU();
+		disk = new Disk();
+		os = new OS();
+		str = new Storage();
+	}
+
+	public void on() {
+		if (str.check()) {
+			if (cpu.run()) {
+				if (disk.read()) {
+					if (os.load()) {
+						System.out.println("\n检测内存....\r\n" + "cpu在运行...\r\n" + "读取硬盘\r\n" + "操作系统载入...");
+						System.out.println("\n电脑正常运行...");
+						return;
+					}
+				}
+			}
+		}
+
+		System.out.println("内存失败\r\n" + "cpu错误\r\n" + "硬盘错误\r\n" + "操作系统关闭....");
+	}
+
+}
+
+
+package cn.ccsu.test;
+
+import org.junit.Test;
+
+import cn.ccsu.system.Facade;
+
+public class FacadeTest {
+
+	public FacadeTest() {
+
+	}
+
+	@Test
+	public void test() {
+		Facade facade = new Facade();
+		facade.on();
+	}
+
+}
+
+D.小结
+外观模式遵循“迪米特法则”，即“不要和陌生人说话”，让一个外观类和子系统打交道，减少了用户和具体子系统的耦合度，便于维护。
+
+
+5.代理模式
+A.UML图
+B.结构图
+C.具体代码实现
+package cn.ccsu.log;
+
+public abstract class AbstractLog {
+
+	public abstract int method(int m, int n);
+}
+
+
+
+
+package cn.ccsu.log;
+
+public class RealLog extends AbstractLog {
+
+	@Override
+	public int method(int m, int n) {
+
+		System.out.println("真实业务方法被调用!!");
+		return m / n;
+	}
+
+}
+
+package cn.ccsu.log;
+
+import java.util.Date;
+
+public class ProxyLog extends AbstractLog {
+
+	private RealLog log = new RealLog();
+
+	public void PreAdvice() {
+
+		System.out.println("方法method调用的时间为：" + new Date());
+	}
+
+	public void PostAdvice() {
+
+		System.out.println("方法method调用成功!!");
+	}
+
+	@Override
+	public int method(int m, int n) {
+
+		PreAdvice();
+		int result = 0;
+		try {
+			result = log.method(m, n);
+		} catch (Exception e) {
+			System.out.println("方法method()调用失败");
+			System.exit(-1);
+		}
+		PostAdvice();
+		return result;
+	}
+
+
+
+package cn.ccsu.log.test;
+
+import cn.ccsu.log.ProxyLog;
+import org.junit.Test;
+
+public class ProxyLogTest {
+
+	@Test
+	public void test() {
+
+		int m = 0;
+		int n = 1;
+		 System.out.println(new ProxyLog().method(m, n));
+	}
+}
+}
+
+D.小结
+
+
+
+
+                                                                                                                                                                                                                                                  

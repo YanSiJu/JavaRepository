@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="css/authorize.css" />
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="validator.min.js"></script>
+<script type="text/javascript" src="js/authorizeCheck.js">
+</script>
+<meta charset="UTF-8">
+<title>用户注册</title>
+</head>
+
+<body>
+	<div id="div_1">
+		<a href="#" class="link">&emsp;退出系统</a>
+		<ul>
+			<!-- <br />
+				<br /> -->
+			<li><a href="">首页</a></li>
+			<li><a href="">登录</a></li>
+		</ul>
+	</div>
+	<form name="example_form" action="register">
+		<table>
+			<tr>
+				<td>&emsp;用户名:</td>
+				<td><input type="text" id="name" placeholder="登录用户名，不少于4个字符"
+					name="name" /></td>
+			</tr>
+			<tr>
+				<td>&emsp;</td>
+				<td>&emsp;</td>
+			</tr>
+			<tr>
+				<td>&emsp;昵称:</td>
+				<td>
+				<input type="text" id="nickName" placeholder="昵称，不少于4个字符" 
+					name="nickName" />
+				</td>
+			</tr>
+			<tr>
+				<td>&emsp;</td>
+				<td>&emsp;</td>
+			</tr>
+			<tr>
+				<td>邮&emsp;&emsp;箱:&emsp;&emsp;</td>
+				<td><input id="email" type="email" placeholder="需要通过邮件激活账户"
+					name="email" /></td>
+			</tr>
+			<tr>
+				<td>手机号码:</td>
+				<td><input id="tel" type="tel" placeholder="需要通过邮件激活账户"
+					name="tel" />
+				</td>
+			</tr>
+			<tr>
+				<td>&emsp;</td>
+				<td>&emsp;</td>
+			</tr>
+			<tr>
+				<td>密&emsp;&emsp;码:</td>
+				<td><input type="password" id="password"
+					placeholder="至少8位,必须包含数字、字母、特殊字符" name="password" /></td>
+			</tr>
+			<tr>
+				<td>&emsp;</td>
+				<td>&emsp;</td>
+			</tr>
+			<tr>
+				<td>确认密码:</td>
+				<td><input type="password" id="repassword" 
+					placeholder="请输入确认密码" name="repassword" /></td>
+			</tr>
+			<tr>
+				<td>&emsp;</td>
+				<td>&emsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="error_msg" id="error_msg">错误提示的地方</div>
+				</td>
+				<td>&emsp;</td>
+			</tr>
+			<tr>
+				<td>&emsp;</td>
+				<td><input type="submit" class="regist" value="注册"
+					onclick="check()" /></td>
+			</tr>
+		</table>
+
+	</form>
+
+	<script type="text/javascript" src="js/validate.js"></script>
+</body>
+</html>

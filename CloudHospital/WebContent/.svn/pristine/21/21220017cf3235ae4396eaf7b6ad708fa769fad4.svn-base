@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>首页</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+   	<link href="css/nav.css" rel="stylesheet" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <script src="js/all.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav" style="margin: 0px; padding: 0px;">
+		<div class="nav-header" >
+			<h4 class="nav-title">首页</h4>
+			<a href="#" class="icon-message icon">
+				<span class="span" style="display: none;">*</span>
+			</a>
+			<a href="#" class="icon icon-add"></a>
+		</div>
+	</header>
+	<div class="mui-content">
+		<div class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#"><img src="images/psb04.jpg"/></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="images/psb01.jpg"/></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="images/psb02.jpg"/></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="images/psb03.jpg"/></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="images/psb04.jpg"/></a>
+				</div>
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#"><img src="images/psb01.jpg"/></a>
+				</div>
+				
+			</div>
+			<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+		</div>
+	</div>
+	<div class="nav-nav">
+		<ul class="nav-ul">
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/form.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="color: blue;">健康报告</h5>
+				</a>
+			</li>	
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/xueya.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="padding-left:10px ;color: blue;">血压</h5>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/xuetang.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="padding-left:10px ;color: blue;">血糖</h5>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/yunqi.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="padding-left:10px ;color: blue;">孕期</h5>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/yuer.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="padding-left:10px ;color: blue;">育儿</h5>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/jianshen.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="padding-left:10px ;color: blue;">运动</h5>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/pianfang.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="padding-left:5px ;color: blue;">老偏方</h5>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/baike.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="color: blue;">体验百科</h5>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/shuimian.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="padding-left:5px ;color: blue;">一点通</h5>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="icon-nav">
+					<img src="images/xuetang.png" style="width: 44px;padding-left: 0.8rem;"/>
+					<h5 style="color: blue; padding-right:4px ;">我的睡眠</h5>
+				</a>
+			</li>
+		</ul>
+	</div>	
+	
+	<div class="mui-content" style="padding: 0px; margin: 0px;">
+		<a href="#">
+			<div class="nav-left nav-both">
+				<h3 class="nav-title-style">免费咨询<img src="images/tuijian.png"  style="width: 2rem;float: right;margin-right: 8.8rem; margin-top:-0.8rem ;"/></h3>
+				<p>全科医生答疑解惑</p>
+			</div>
+		</a>
+		<a href="#">
+			<div class="nav-right nav-both">
+				<h3 class="nav-title-style">预约挂号</h3>
+				<p>快速挂号、简单就医</p>
+			</div>
+		</a>
+		<a href="#">
+			<div class="nav-left nav-both">
+				<h3 class="nav-title-style">找医生</h3>
+				<p>在线就诊、处方购药</p>
+			</div>
+		</a>
+		<a href="#">
+			<div class="nav-right nav-both">
+				<h3 class="nav-title-style">团检预约</h3>
+				<p>企业/团队用户体验</p>
+			</div>
+		</a>
+	</div>
+		
+	<div class="kong">
+		
+	</div>
+	
+	<div class="nav-jiankanbaobao">
+		<img src="images/jiankangbaogao.png" class="jiankanbaogao"/>
+		<a href="#"><span style="color:#6D6D72;" >更多</span><img src="images/qianjin.png" style="width: 2rem; padding-top: 1.0rem;"/></a>
+	</div>
+	<div class="jiankangbaogao-conten">
+		<p style="text-align: center;padding-top: 4rem;">试试手动获取电子报告吧</p>
+		<a style="float: left; padding-left: 1.5rem;padding-top: 1rem;"><button type="button" class="mui-btn mui-btn-outlined mui-btn-primary" style="width: 15rem; height: 5rem;">获取体验报告</button></a>
+		<a style="float: right; padding-right: 1.5rem;padding-top: 1rem;"><button type="button" class="mui-btn mui-btn-outlined mui-btn-primary"style="width: 15rem; height: 5rem;">拍照管理报名</button></a>
+	</div>
+	
+	<div class="nav-jiankanbaobao" >
+		<h5 style="color: #323232;float: left;padding-top: 0.8rem;padding-left: 1rem;">健康评估</h5>
+		<a href="#"><span style="color:#6D6D72;" >更多</span><img src="images/qianjin.png" style="width: 2rem; padding-top: 1.0rem;"/></a>
+	</div>
+	<div class="kong"style="height: 10rem;"></div>
+	<div class="nav-jiankanbaobao" >
+		<h5 style="color: #323232;float: left;padding-top: 0.8rem;padding-left: 1rem;">健康咨询</h5>
+		<a href="#"><span style="color:#6D6D72;" >更多</span><img src="images/qianjin.png" style="width: 2rem; padding-top: 1.0rem;"/></a>
+	</div>
+	
+	
+	<div class="kong"style="height: 10rem;"></div>
+	<div class="kong"style="height: 10rem;"></div>
+	<div class="kong"style="height: 10rem;"></div>
+	<div class="kong"style="height: 10rem;"></div>
+	<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item mui-active" href="index.html">
+	        <span class="mui-icon mui-icon-home"></span>
+	        <span class="mui-tab-label">首页</span>
+	    </a>
+	    <a class="mui-tab-item" href="yunyiyuan.html">
+	        <span class="mui-icon icon-yunyiyuan"></span>
+	        <span class="mui-tab-label">云医院</span>
+	    </a>
+	    <a class="mui-tab-item" href="shop.html">
+	        <span class="mui-icon mui-icon-email"></span>
+	        <span class="mui-tab-label">健康商城</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-gear"></span>
+	        <span class="mui-tab-label">发现</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-gear"></span>
+	        <span class="mui-tab-label">我</span>
+	    </a>
+	</nav>
+<script type="text/javascript">
+	
+	
+</script>
+	
+</body>
+</html>

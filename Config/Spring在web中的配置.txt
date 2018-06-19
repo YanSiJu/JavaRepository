@@ -1,0 +1,16 @@
+web.xml:
+<!-- 配置 Spring 配置文件的名称和位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	
+	<!-- 启动 IOC 容器的 ServletContextListener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	需要额外加入的 jar 包:
+
+spring-web-4.0.0.RELEASE.jar
+spring-webmvc-4.0.0.RELEASE.jar

@@ -1,0 +1,7 @@
+修改前--->System.out:java.io.PrintStream@69663380
+
+修改后--->System.out:java.io.PrintStream@5b37e0d2
+
+
+唐纳德▪特朗普
+com.alibaba.stream.StandardStream@4459eb14

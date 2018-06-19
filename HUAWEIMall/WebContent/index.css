@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+
+.content{
+ 	font-family:sans-serif;
+ 	width:1000px;
+ 	height:500px;
+ 	background-color: #F0FFFF;
+
+ }
+
+.top_left{
+	margin-left:20px;
+	
+	
+}
+
+.shoppingCar{
+	width:50px;
+	height:50px;
+	margin-left:700px;
+	
+}
+
+#HUAWEI{
+	
+	width:130px;
+	height:200px;
+	
+}

@@ -1,0 +1,36 @@
+	$()
+			.ready(
+					function() {
+						$("#sub")
+								.click(function() {
+											var name = $("#username").val();
+											var age = 18;
+											var user = {
+												"username" : name,
+												"age" : age
+											};
+											$.ajax({
+														url : 'hello.json',
+														type : 'POST',
+														data : JSON
+																.stringify(user), // Request body 
+														contentType : 'application/json; charset=utf-8',
+														dataType : 'json',
+														success : function(
+																response) {
+															//请求成功
+															alert("你好"
+																	+ response.username
+																	+ "["
+																	+ response.age
+																	+ "]，当前时间是："
+																	+ response.time
+																	+ "，欢迎访问：http://www.sijuyan.cn");
+
+														},
+														error : function(msg) {
+															alert(msg);
+														}
+													});
+										});
+					});

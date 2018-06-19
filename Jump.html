@@ -1,0 +1,22 @@
+<!doctype html> 
+<head> 
+<meta charset=utf-8" /> 
+<title>js定时跳转页面的方法</title> 
+</head> 
+<body> 
+	<a href="http://localhost:8080/ssmTest/">Test</a>
+<script> 
+var t=5;//设定跳转的时间 
+setInterval("refer()",1000); //启动1秒定时 
+function refer(){  
+    if(t==0){ 
+        location="http://www.Google.com.hk"; //#设定跳转的链接地址 
+    } 
+    document.getElementById('show').innerHTML=""+t+"秒后跳转到谷歌"; // 显示倒计时 
+    t--; // 计数器递减 
+    //本文转自： 
+} 
+</script> 
+<span id="show"></span> 
+</body> 
+</html> 

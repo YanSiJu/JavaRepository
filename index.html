@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>获取下拉框的值</title>
+	 <script>
+	 //function selectedValue(){
+	 
+	 // let select = document.getElementById('test');
+
+     function change() {
+	 let select = document.getElementById('test');
+        let index = select.selectedIndex;
+        let p = document.getElementById('in');
+        //
+		p.value = select.options[index].value;
+		return select.options[index].value;
+	 
+	 //}
+     
+      }
+	  window.onload = selectedValue();
+    </script>
+  </head>
+  <body>
+    <select class="test" id="test" name="test" onchange="change();">
+      <option value="red">red</option>
+      <option value="green">green</option>
+      <option value="blue">blue</option>
+    </select>
+    <p id="text"></p>
+   
+   <table>
+		<input  id="in"   type="text">
+		
+   </table>
+   
+  </body>
+</html>

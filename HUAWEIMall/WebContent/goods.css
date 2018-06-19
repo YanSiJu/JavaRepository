@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+
+.content{
+ 	font-family:sans-serif;
+ 	width:1000px;
+ 	height:500px;
+ 	background-color: #F0FFFF;
+
+ }
+
+.right{
+	margin-left:800px;
+	
+}
+.index{
+	
+	margin-left:40px;
+	
+}
+
+

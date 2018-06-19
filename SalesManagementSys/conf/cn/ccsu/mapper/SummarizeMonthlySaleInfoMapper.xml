@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ccsu.mapper.SummarizeMonthlySaleInfoMapper">
+
+	<!-- <parameterMap type="cn.ccsu.entity.SalesmanMonthlyRecord" id="salmanMap"> 
+		<parameter property="" javaType=""/> </parameterMap> -->
+
+	<!-- List<SalesmanMonthlyRecord> querySalmanMonthlySaleRoom() -->
+	<select id="querySalmanMonthlySaleRoom" resultType="cn.ccsu.entity.SalesmanMonthlyRecord">
+		select
+		MonthlyRecord.salesmanId
+		id,Salesman.name,MonthlyRecord.month,sum(saleroom) monthlySaleroom
+		from MonthlyRecord,Salesman
+		where Salesman.id =
+		MonthlyRecord.salesmanId
+		group by
+		MonthlyRecord.salesmanId,MonthlyRecord.month
+	</select>
+
+	<!--List<ProductMonthlyRecord> queryProductMonthlySaleRoom() -->
+	<select id="queryProductMonthlySaleRoom" resultType="cn.ccsu.entity.ProductMonthlyRecord">
+		select
+		MonthlyRecord.productId,Product.productName,MonthlyRecord.month,sum(saleroom)
+		monthlySaleroom
+		from
+		MonthlyRecord,Product
+		where Product.id =
+		MonthlyRecord.productId
+		group by
+		MonthlyRecord.productId,MonthlyRecord.month
+	</select>
+
+
+</mapper>

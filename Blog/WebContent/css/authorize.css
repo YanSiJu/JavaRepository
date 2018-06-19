@@ -1,0 +1,67 @@
+table {
+	margin: 100px;
+	margin-left: 370px;
+	border-collapse: collapse;
+}
+
+#email,
+#name,
+#tel,
+#password,
+#prepassword {
+	width: 350px;
+	height: 20px;
+	border-style: solid;
+	border-color: lightgrey;
+}
+
+.regist {
+	margin-left: 80px;
+	background-color: 00FF66;
+	width: 83px;
+	font-size: 15px;
+}
+
+#div_1 {
+	height: 120px;
+	background-color: #336699;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	/*height: 100px;*/
+	/*background-color: #336699;*/
+	overflow: hidden;
+	margin-lef: 300px;
+}
+
+li {
+	float: right;
+}
+
+li a {
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	padding: 14px 16px;
+	font-size: 25px;
+}
+
+li a:hover {
+	background-color: #333990;
+	color: white;
+}
+
+.link {
+	float: right;
+	text-decoration: none;
+	color: white;
+}
+
+div a:hover{
+	color: #66FF00;
+}
+

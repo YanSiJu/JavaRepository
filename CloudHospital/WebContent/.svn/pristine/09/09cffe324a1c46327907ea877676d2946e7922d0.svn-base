@@ -1,0 +1,159 @@
+html{
+	font-size: 62.5%;
+}
+.nav-header{
+	background-color: #0080a2;
+	width: 100%;
+	height: 4.4rem;
+}
+.nav-title{
+	color: #FFFFFF;
+	margin: 1rem;
+	padding: 5px 0px 10px 20px;
+	display: inline-block;
+}
+.icon
+{	background-repeat: no-repeat; 
+	width: 30px;
+	height: 30px;
+	margin-right:5px ;
+	background-size: 30px 30px;
+}
+.icon .span
+{	display: inline-table;
+	background-position: center;
+}
+.icon-message{
+	position: absolute;
+	right: 5.5rem;
+	top: 0.7rem;
+	background-image: url(../imgs/icon/message.png);
+}
+.icon-add{
+	position: absolute;
+	background-image: url(../imgs/icon/add.png);
+	right: 1rem;
+	top: 0.7rem;
+}
+.span
+{
+
+
+	color: red;
+	position: inherit;
+}
+
+ul li{
+	list-style: none;
+}
+.nav-nav{
+	padding-top: 0.5rem;
+	padding-left:1.5rem ;
+	margin: 0rem;
+	padding: 0rem;
+	overflow:hidden;
+	border-bottom: solid #DDDDDD 0.8rem;
+	
+}
+
+.icon-nav{
+	font-size: small;
+	padding-right:2.5rem ;
+	color: blue;
+	padding-right:0rem;
+	margin-left: 0.9rem;
+	width: 6rem;
+	height: 8rem;
+	float: left;
+}
+.nav-nav ul{
+	padding: 0rem;
+	margin: 0px;
+	margin-top:1.5rem ;
+	margin-left:1rem ;
+	
+}
+
+.nav-left
+{
+	float: left;
+	border-right: solid 0.5px #AAAAAA;
+}
+.nav-right{
+	float:right;
+	border-left: solid 0.5px #aaaaaa;
+}
+.nav-both
+{
+	padding: 0px;
+	margin: 0px;
+	background-image: url(../images/qianjin.png);
+	background-repeat: no-repeat;
+	background-size: 2rem 2rem ;
+	background-position-x:14.4rem;
+	background-position-y: center;
+	width: 50%;
+	height: 7.7rem;
+	border-top: 0.1rem solid #BBBBBB;
+}
+
+.nav-title-style
+{
+	padding-top: 2rem;
+	padding-left: 1rem;
+	font-size: 1.5rem;
+	font-style: initial;
+}
+.nav-both p
+{
+	margin-left:1rem ;
+}
+.kong
+{
+	padding: 0px ; 
+	margin: 0px ;
+	background-color: #DDDDDD;
+	clear: both;
+	height: 0.5rem;
+	border-top: 0.1rem solid #BBBBBB;
+}
+.jiankanbaogao
+{
+	height: 3.5rem; 
+	padding-top: 0.5rem;
+}
+.nav-jiankanbaobao
+{
+	padding: 0px;
+	margin: 0px ; 
+	border-top:solid #BBBBBB 1px ;
+	height: 4rem;
+	border-bottom:solid #BBBBBB 1px ;
+}
+
+.nav-jiankanbaobao a
+{
+	float: right;
+}
+.jiankangbaogao-conten
+{
+	height: 15rem;
+	margin: 0px;
+	background-image: url(../images/wubaogao.png);
+	background-size: 12rem 1.8rem;
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: 1.5REM;
+}
+
+.mui-slider-item img
+{
+	height: 12rem;
+}
+.icon-yunyiyuan
+{
+	background-image: url(../imgs/icon/yiyuan.png);
+	background-size: 2.0rem 2.0rem;
+	background-position-y: 0.5rem;
+	background-repeat: no-repeat;
+}

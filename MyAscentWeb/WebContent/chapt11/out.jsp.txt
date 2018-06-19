@@ -1,0 +1,20 @@
+<%@ page contentType="text/html;charset=GB2312" %>
+<%@ page import="java.util.Date"%>
+<HTML>
+<HEAD>
+<%
+Date now = new Date(); 
+String hours=String.valueOf(now.getHours());
+String mins=String.valueOf(now.getMinutes());
+String secs=String.valueOf(now.getSeconds());
+%>
+现在是
+<%out.print(String.valueOf(now.getHours()));%>
+点
+<%out.print(String.valueOf(now.getMinutes()));%>
+分
+<%out.print(String.valueOf(now.getSeconds()));%>
+秒
+</FONT>
+</BODY>
+</HTML>

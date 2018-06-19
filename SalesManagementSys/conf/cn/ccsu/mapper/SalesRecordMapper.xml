@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ccsu.mapper.SalesRecordMapper">
+
+
+	<!-- <resultMap type="cn.ccsu.entity.SalesRecord" id="SalesRecordMap">
+		<result column="productId" property="productId" />
+		<result column="number" property="number" />
+		<result column="salesmanId" property="salesmanId" />
+		<result column="saleroom" property="saleroom" />
+		<result column="dateTime" property="dateTime"  javaType="java.time.LocalDateTime"/>
+		<result column="recordId" property="recordId" />
+
+	</resultMap> -->
+	
+	<!-- SalesRecord selectSalesRecordById(Integer recordId) -->
+	<select id="selectSalesRecordById"
+	  resultType="cn.ccsu.entity.SalesRecord">
+	select * from salesRecord
+	where recordId = #{recordId}
+	</select>
+	
+	
+	<!-- List<SalesRecord> selectAllSalesRecords() -->
+	<select id="selectAllSalesRecords"   resultType="cn.ccsu.entity.SalesRecord">
+	select * from salesRecord
+	</select>
+	
+	<!-- List<SalesRecord> selectSalesRecord(HashMap<String, Object> params); -->
+	<select id="selectSalesRecord" resultType="cn.ccsu.entity.SalesRecord">
+		select * from salesRecord
+		<where>
+			<if test="productId != null">
+				productId = #{productId}
+			</if>
+			<if test="salesmanId != null">
+				or salesmanId = #{salesmanId}
+			</if>
+			<if test="recordId != null">
+				or recordId = #{recordId}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- void deleteSalesRecord(Integer recordId) -->
+	<delete id="deleteSalesRecord">
+		delete from salesRecord
+		where recordId = #{recordId}
+		<!-- <where>
+			<if test="recordId != null">
+				 recordId = #{recordId}
+			</if>
+		</where> -->
+	</delete>
+
+	<!-- void addSalesRecord(SalesRecord record); -->
+	<insert id="addSalesRecord">
+		INSERT INTO
+		salesRecord(productId,salesmanId,number,saleroom,dateTime)
+		VALUES
+		(#{productId},#{salesmanId},#{number},#{saleroom},#{dateTime})
+	</insert>
+
+	<!--int updateSalesRecord(SalesRecord record); -->
+	<update id="updateSalesRecord">
+		update salesRecord
+		<set>
+			<if test="productId != null">productId = #{productId},</if>
+			<if test="salesmanId != null">salesmanId = #{salesmanId},</if>
+			<if test="number != null">number = #{number},</if>
+			<if test="saleroom != null">saleroom = #{saleroom}</if>
+		</set>
+		where recordId = #{recordId}
+	</update>
+
+
+
+</mapper>

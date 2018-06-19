@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ccsu.mapper.ProductMapper">
+
+
+	<!-- List<Product> selectProduct(Map<String, Object> params); -->
+	<select id="selectProduct" resultType="cn.ccsu.entity.Product">
+		<!-- <bind name="name" value="'%'+ _parameter.productName+'%'" /> -->
+		select * from product
+		<where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+			<if test="productName != null">
+				or productName like
+				concat(concat('%',#{productName}),'%')
+			</if>
+		</where>
+	</select>
+
+
+	<!-- List<Product> selectAllProducts() -->
+	<select id="selectAllProducts" resultType="cn.ccsu.entity.Product">
+		select * from product
+	</select>
+
+	<!-- void deleteProduct(Integer id) -->
+	<delete id="deleteProduct">
+		delete from product
+		where id = #{id}
+		<!-- <where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+		</where> -->
+	</delete>
+
+	<!-- int addProduct(Product product); -->
+	<insert id="addProduct">
+		INSERT INTO product(productName,price)
+		VALUES
+		(#{productName},#{price})
+	</insert>
+
+	<!-- int updateProduct(Product product); -->
+	<update id="updateProduct">
+		update product
+		<set>
+			<if test="productName != null">productName = #{productName},</if>
+			<if test="price != null">price = #{price}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper>

@@ -1,0 +1,43 @@
+{
+	"index.html": {
+		"resources": [
+			"imgs/icon/messa.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/nav.css",
+			"imgs/icon/message.png",
+			"imgs/icon/add.png",
+			"images/psb01.jpg",
+			"images/psb04.jpg",
+			"images/psb03.jpg",
+			"images/psb02.jpg",
+			"js/all.js",
+			"images/form.png",
+			"images/医生.png",
+			"images/doctor.png",
+			"images/xuetang.png",
+			"images/jianshen.png",
+			"images/xueya.png",
+			"images/yunqi.png",
+			"images/yuer.png",
+			"images/偏方.png",
+			"images/pianfang.png",
+			"images/baike.png",
+			"images/shuimian.png",
+			"images/qianjin.png",
+			"images/推荐.png",
+			"images/tuijian.png",
+			"jiankangbaogao.png",
+			"images/jiankangbaogao.png",
+			"images/wubaogao.png",
+			"fonts/mui.ttf",
+			"imgs/icon/yiyuan.png"
+		]
+	},
+	"pullrefresh_sub.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css"
+		]
+	}
+}

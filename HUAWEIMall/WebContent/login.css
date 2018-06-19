@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+
+.login{
+ 	font-family:sans-serif;
+ 	width:1000px;
+ 	height:500px;
+ 	background-color: #F0FFFF;
+
+ }
+
+ h1{
+ 	text-align:center;
+ 
+ }
+ 
+ h4{
+ 	text-align:right;
+ 
+ }
+ 
+ 
+ .td{
+ 	width:350px;
+ 
+ }
+ .td2{
+ 	text-align:left;
+ 
+ }
+ 
+.button{
+	margin-left:75px;
+	text-align:center;
+	width:150px;
+	height:40px;
+	background-color:#99CCFF;
+	border: 0;
+	color:#FFFFFF;
+	
+}
+ .blank{
+ 	height:300px;
+ 	width:200px;
+ 
+ }

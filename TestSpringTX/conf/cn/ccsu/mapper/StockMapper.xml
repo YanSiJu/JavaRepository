@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ccsu.dao.StockMapper">
+
+	<!-- void updateStock(Integer id) -->
+	<update id="updateStock">
+		update stockNum
+		set stock = stock -1
+		where id = #{id}
+	</update>
+
+	<!-- Integer queryStock(Integer id) -->
+	<select id="queryStock" resultType="java.lang.Integer">
+		select stock
+		from stockNum
+		where
+		id = #{id}
+	</select>
+
+</mapper>

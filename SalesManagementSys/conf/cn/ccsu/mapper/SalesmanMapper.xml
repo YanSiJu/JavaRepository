@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ccsu.mapper.SalesmanMapper">
+
+	<!-- void deleteSalesman(Integer id) -->
+	<delete id="deleteSalesman">
+		delete from salesman
+		where id = #{id}
+		<!-- <where> <if test="id != null"> id = #{id} </if> </where> -->
+	</delete>
+
+	<!-- List<Salesman> selectAllSalesman() -->
+	<select id="selectAllSalesman" resultType="cn.ccsu.entity.Salesman">
+		select * from salesman
+	</select>
+
+	<!-- int addSalesman(Salesman salman); -->
+	<insert id="addSalesman">
+		INSERT INTO salesman(name,sex,birth)
+		VALUES
+		(#{name},#{sex}, #{birth})
+	</insert>
+
+	<!-- int updateSalesman(Salesman salesman) -->
+	<update id="updateSalesman">
+		update salesman
+		<set>
+			<if test="sex != null">sex = #{sex},</if>
+			<if test="name != null">name = #{name},</if>
+			<if test="birth != null">birth = #{birth}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- List<Salesman> selectSalesman(Map<String, Object> params); -->
+	<select id="selectSalesman" resultType="cn.ccsu.entity.Salesman">
+		<!-- <bind name="salName" value="'%'+_parameter.name+'%'"/> -->
+		select * from salesman
+		<where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+			<if test="name != null">
+				or name like concat(concat('%',#{name}),'%')
+			</if>
+			<if test="sex != null">
+				or sex = #{sex}
+			</if>
+		</where>
+	</select>
+
+
+</mapper>
