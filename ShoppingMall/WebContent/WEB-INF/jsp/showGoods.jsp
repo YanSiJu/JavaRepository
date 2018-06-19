@@ -303,8 +303,7 @@ h4 {
 								src="${image[0].imgSrc }" alt="1" class="picture" />
 						</div>
 						<div id="buttons">
-							<span index="1" class="on"> </span> <span index="2"></span> <span
-								index="3"></span>
+							<span  class="on"> </span> <span ></span> <span></span>
 
 						</div>
 						<a href="javascript:;" class="arrow" id="prev">&lt;</a> <a
