@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
 		User user = mapper.selectUserByName(userName);
 		System.out.println("login:" + user);
+		// 比对用户输入的明文与数据库中的密文
 		if (user != null && BCrypt.checkpw(pwd, user.getPassword())) {
 			return user;
 		}
@@ -37,7 +38,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void register(User user) {
-		System.out.println(user);
 		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
 		mapper.insertUser(user);
 		User u = mapper.selectUserByName(user.getUserName());

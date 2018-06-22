@@ -152,10 +152,15 @@ h4 {
 					if ($("#password").val() == "") {
 						$("#password_error").html("&emsp;&emsp;请输入密码")
 						flag = 0;
+					}else{
+						$("#password_error").html("")
 					}
 					if ($("#repassword").val() == "") {
 						$("#repassword_error").html("&emsp;&emsp;请确认密码")
 						flag = 0;
+					}
+					else{
+						$("#repassword_error").html("")
 					}
 					if ($("#repassword").val() != ""
 							&& $("#repassword").val() != $("#password").val()) {
@@ -165,16 +170,22 @@ h4 {
 					if ($("#address").val() == "") {
 						$("#address_error").html("&emsp;&emsp;收货地址不能为空")
 						flag = 0;
+					}else{
+						$("#address_error").html("")
 					}
 					if ($("#name").val() == "") {
 						$("#name_error").html("&emsp;&emsp;收货人不能为空")
 						flag = 0;
+					}else{
+						$("#name_error").html("")
 					}
 					var error = 1;
 					if ($("#userName").val() == "") {
 						$("#userName_error").html("&emsp;&emsp;用户名不能为空");
 						flag = 0;
 						error = 0;
+					}else{
+						$("#userName_error").html("")
 					}
 					if ($("#userName").val() != ""
 							&& $("#userName").val().length < 4

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+		<!-- 绑定接口,com.alibaba.mapper.UserMapper即为绑定的接口的全类名 -->
 <mapper namespace="com.alibaba.mapper.UserMapper">
 
+	<!-- 绑定接口的方法，id即为方法名  -->
 	<!--  User selectUserByName(String userName) -->
 	<select id="selectUserByName" resultType="com.alibaba.entity.User">
 		select * from user
