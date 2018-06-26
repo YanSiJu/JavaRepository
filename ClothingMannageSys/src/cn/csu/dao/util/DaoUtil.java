@@ -1,4 +1,4 @@
-package cn.csu.dao;
+package cn.csu.dao.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
@@ -14,9 +14,7 @@ import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-
-
-public class Dao {
+public class DaoUtil {
 
 	private static DataSource dataSource = null;
 
