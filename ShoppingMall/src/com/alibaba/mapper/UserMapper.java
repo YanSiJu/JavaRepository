@@ -7,8 +7,8 @@ import com.alibaba.entity.User;
 @Repository
 public interface UserMapper {
 
-	public User selectUserByName(String userName);
+	User selectUserByName(String userName);
 
-	public void insertUser(User user);
+	void insertUser(User user);
 
 }

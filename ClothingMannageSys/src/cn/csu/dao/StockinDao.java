@@ -10,16 +10,28 @@ import cn.csu.entity.Stockin;
 
 public class StockinDao extends DaoUtil {
 
-	public void stockin(int userId, int wareId, LocalDate date, String remark, Map<Integer, Integer> products) {
+	public void stockin(int userId, int wareId, LocalDate date, String remark, int proId, int count) {
 		String sql = "INSERT INTO tb_stockin(wareId,userId,date,remark) VALUES (?, ?,?, ?)";
 		Connection conn = getConnection();
 		if (conn != null) {
 			this.update(conn, sql, wareId, userId, date, remark);
 		}
 		int stockinId = queryStockinId();
-		insertProducts(stockinId, products);
+		if (stockinId != -1) {
+			insertProduct(stockinId, proId, count);
+		}
+
 	}
 
+	private void insertProduct(int stockinId, int proId, int count) {
+		Connection conn = getConnection();
+		String sql = "INSERT INTO  tb_stockindet(stockinId,proId,count) VALUES (?, ?,?)";
+		if (conn != null) {
+			this.update(conn, sql, stockinId, proId, count);
+		}
+	}
+
+	@SuppressWarnings("unused")
 	private void insertProducts(int stockinId, Map<Integer, Integer> products) {
 		Connection conn = getConnection();
 		String sql = "INSERT INTO  tb_stockindet(stockinId,proId,count) VALUES (?, ?,?)";
@@ -34,7 +46,7 @@ public class StockinDao extends DaoUtil {
 	}
 
 	private int queryStockinId() {
-		String sql = "";
+		String sql = "select MAX(tb_stockin.stockinId)  from  tb_stockin";
 		Connection conn = getConnection();
 		Stockin stockin = null;
 		if (conn != null) {
@@ -44,7 +56,6 @@ public class StockinDao extends DaoUtil {
 			}
 		}
 		return -1;
-
 	}
 
 	private Connection getConnection() {

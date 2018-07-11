@@ -38,7 +38,7 @@ public class JavaSmsApi {
 		// 修改为您的apikey
 		String apikey = "2dc30c93cb9f554e82bbf644cb25f9d7";
 		// 修改为您要发送的手机号
-		String mobile = "18374866138";
+		String mobile = "18867358332";
 
 		/**************** 查账户信息调用示例 *****************/
 		System.out.println(JavaSmsApi.getUserInfo(apikey));

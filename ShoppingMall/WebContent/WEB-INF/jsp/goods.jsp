@@ -6,7 +6,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,7 +38,8 @@ a {
 	<ul style="width: 840px;">
 		<li><a href="#home">主页</a></li>
 		<li><a href="#home" class="active">我的订单</a></li>
-		<li><a href="${pageContext.request.contextPath }/Shoppingtrolley/queryTrolleyInfo">我的购物车</a></li>
+		<li><a
+			href="${pageContext.request.contextPath }/Shoppingtrolley/queryTrolleyInfo">我的购物车</a></li>
 		<c:if test="${not empty user }">
 			<li><a href="${pageContext.request.contextPath }/User/logout">注销</a></li>
 		</c:if>
