@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void register(String name, String pwd, String mobile) {
-		User u = new User(0, name, BCrypt.hashpw(pwd, BCrypt.gensalt()), 0, 0d, mobile, null);
+		User u = new User(0, name, BCrypt.hashpw(pwd, BCrypt.gensalt()), 0, 0d, mobile, null, null);
 		System.out.println("\n\n\nuser--->" + u);
 		userMapper.insertUser(u);
 	}

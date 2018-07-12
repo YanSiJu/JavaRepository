@@ -9,30 +9,28 @@
 		<setting name="cacheEnabled" value="true" />
 		<setting name="lazyLoadingEnabled" value="true" />
 		<setting name="aggressiveLazyLoading" value="false" />
-		<!-- <setting name="logImpl" value="STDOUT_LOGGING"/> -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
-	
-	
-	
+
+
+
 	<!-- 分页插件配置 -->
-	<plugins>  
-    <plugin interceptor="com.github.pagehelper.PageInterceptor">  
-        <!-- config params as the following -->  
-        <!--<!–分页参数合理化  –>-->  
-        <property name="reasonable" value="true"/>  
-    </plugin>  
-	</plugins>  
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<!-- config params as the following -->
+			<!--<!–分页参数合理化 –> -->
+			<property name="reasonable" value="true" />
+		</plugin>
+	</plugins>
 
 	<databaseIdProvider type="DB_VENDOR">
 		<property name="MySQL" value="mysql" />
 		<property name="Oracle" value="oracle" />
 		<property name="SQL Server" value="sqlserver" />
 	</databaseIdProvider>
-	
 
-	<!-- <typeHandlers>
-		<typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" javaType=""
-		jdbcType=""/>
-	</typeHandlers> -->
+
+	<!-- <typeHandlers> <typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" 
+		javaType="" jdbcType=""/> </typeHandlers> -->
 
 </configuration>

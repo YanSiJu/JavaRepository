@@ -7,6 +7,30 @@ public class User {
 	private String password;
 	private double height;
 	private double weight;
+
+	public User(int userId, String userName, String password, double height, double weight, String tel, String sex,
+			String icon) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.password = password;
+		this.height = height;
+		this.weight = weight;
+		this.icon = icon;
+		this.tel = tel;
+		this.sex = sex;
+	}
+
+	private String icon;
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -14,6 +38,7 @@ public class User {
 		long temp;
 		temp = Double.doubleToLongBits(height);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((icon == null) ? 0 : icon.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((sex == null) ? 0 : sex.hashCode());
 		result = prime * result + ((tel == null) ? 0 : tel.hashCode());
@@ -23,21 +48,13 @@ public class User {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-	public User(int userId, String userName, String password, double height, double weight, String tel, String sex) {
-		super();
-		this.userId = userId;
-		this.userName = userName;
-		this.password = password;
-		this.height = height;
-		this.weight = weight;
-		this.tel = tel;
-		this.sex = sex;
-	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", height=" + height
-				+ ", weight=" + weight + ", tel=" + tel + ", sex=" + sex + "]";
+				+ ", weight=" + weight + ", icon=" + icon + ", tel=" + tel + ", sex=" + sex + "]";
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -48,6 +65,11 @@ public class User {
 			return false;
 		User other = (User) obj;
 		if (Double.doubleToLongBits(height) != Double.doubleToLongBits(other.height))
+			return false;
+		if (icon == null) {
+			if (other.icon != null)
+				return false;
+		} else if (!icon.equals(other.icon))
 			return false;
 		if (password == null) {
 			if (other.password != null)
@@ -75,47 +97,62 @@ public class User {
 			return false;
 		return true;
 	}
+
 	private String tel;
 	private String sex;
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public double getHeight() {
 		return height;
 	}
+
 	public void setHeight(double height) {
 		this.height = height;
 	}
+
 	public double getWeight() {
 		return weight;
 	}
+
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
+
 	public String getTel() {
 		return tel;
 	}
+
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+
 	public String getSex() {
 		return sex;
 	}
+
 	public void setSex(String sex) {
 		this.sex = sex;
 	}

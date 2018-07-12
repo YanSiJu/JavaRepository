@@ -14,7 +14,7 @@
 
 	<!-- void insertUser(User u) -->
 	<insert id="insertUser">
-		INSERT INTO `user`(userName,password,tel) VALUES
-		(#{userName},#{password},#{tel});
+		INSERT INTO `user`(userName,password,tel,height,weight) VALUES
+		(#{userName},#{password},#{tel},#{height},#{weight});
 	</insert>
 </mapper>
