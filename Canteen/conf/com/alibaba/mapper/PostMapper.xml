@@ -10,5 +10,9 @@
 		(#{title},#{content},#{time},#{userId},#{praiseCount});
 	</insert>
 
+	<!-- List<Post> selectPosts(); -->
+	<select id="selectPosts"  resultType="com.alibaba.entity.Post">
+		select * from posts
+	</select>
 
 </mapper>

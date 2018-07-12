@@ -2,10 +2,15 @@ package com.alibaba.entity;
 
 import java.time.LocalDateTime;
 
+
 /**
- * @author Bill
- *
- */
+* @author Bill
+* @title: Post.java
+* @Package: com.alibaba.entity
+* @Description: TODO
+* @date:2018年7月12日 下午3:59:20
+* @version:V1.0
+*/
 public class Post {
 
 	private int postsId;

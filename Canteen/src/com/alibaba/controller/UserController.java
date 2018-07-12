@@ -29,11 +29,17 @@ public class UserController {
 	private UserService userService;
 	private static String apikey = "2dc30c93cb9f554e82bbf644cb25f9d7";
 
-	/**
-	 * @param request
-	 * @param data
-	 * @return
-	 */
+	
+	/**     
+	* 方法名：login</br>
+	* 详述：TODO（简单方法可一句话概述）</br>
+	* 开发人员：Bill </br>
+	* 创建时间：2018年7月12日  </br>
+	* @param request
+	* @param data
+	* @return
+	* @throws 
+	*/
 	@RequestMapping("login")
 	@ResponseBody
 	public Map<String, String> login(HttpServletRequest request, @RequestBody String data) {
@@ -58,10 +64,16 @@ public class UserController {
 		return map;
 	}
 
-	/**
-	 * @param data
-	 * @return
-	 */
+	
+	/**     
+	* 方法名：getValidateCode</br>
+	* 详述：TODO（简单方法可一句话概述）</br>
+	* 开发人员：Bill </br>
+	* 创建时间：2018年7月12日  </br>
+	* @param data
+	* @return
+	* @throws 
+	*/
 	@RequestMapping("sendCode")
 	@ResponseBody
 	public Map<String, String> getValidateCode(@RequestBody String data) {
@@ -79,10 +91,15 @@ public class UserController {
 		return map;
 	}
 
-	/**
-	 * @param data
-	 * @return
-	 */
+	/**     
+	* 方法名：regist</br>
+	* 详述：TODO（简单方法可一句话概述）</br>
+	* 开发人员：Bill </br>
+	* 创建时间：2018年7月12日  </br>
+	* @param data
+	* @return
+	* @throws 
+	*/
 	@RequestMapping("register")
 	@ResponseBody
 	public Map<String, String> regist(@RequestBody String data) {

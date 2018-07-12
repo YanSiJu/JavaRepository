@@ -1,6 +1,7 @@
 package com.alibaba.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,18 +12,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.entity.Post;
 import com.alibaba.entity.User;
 import com.alibaba.service.PostService;
 
-
 /**
-* @author Bill
-* @itle: PostController.java
-* @Package: com.alibaba.controller
-* @Description: TODO
-* @date:2018年7月12日 下午2:50:16
-* @version:V1.0
-*/
+ * @author Bill
+ * @title: PostController.java
+ * @Package: com.alibaba.controller
+ * @Description: TODO
+ * @date:2018年7月12日 下午3:33:01
+ * @version:V1.0
+ */
 @Controller
 @RequestMapping("post")
 public class PostController {
@@ -34,9 +36,16 @@ public class PostController {
 	private PostService service;
 
 	/**
+	 * 
+	 * 方法名：post</br>
+	 * 详述：处理用户发的帖子</br>
+	 * 开发人员：Bill </br>
+	 * 创建时间：2018年7月12日 </br>
+	 * 
 	 * @param data
 	 * @param request
-	 * @return
+	 * @return @throws
+	 * 
 	 */
 	@RequestMapping("post")
 	@ResponseBody
@@ -57,6 +66,21 @@ public class PostController {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		return map;
+	}
+
+	@RequestMapping("displayPosts")
+	@ResponseBody
+	public Map<String, String> displayPosts() {
+		Map<String, String> map = new HashMap<>(1);
+		List<Post> posts = service.queryAndOrderPosts();
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("posts", posts);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		map.put("posts", jsonObject.toString());
 		return map;
 	}
 
