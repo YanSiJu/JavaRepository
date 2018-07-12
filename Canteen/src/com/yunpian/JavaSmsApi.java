@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * 短信http接口的java代码调用示例 依赖Apache HttpClient 3.1
@@ -18,23 +19,38 @@ import java.util.Map;
  */
 public class JavaSmsApi {
 	// 查账户信息的http地址
+	/**
+	 * 
+	 */
 	private static String URI_GET_USER_INFO = "http://yunpian.com/v1/user/get.json";
 
 	// 通用发送接口的http地址
+	/**
+	 * 
+	 */
 	private static String URI_SEND_SMS = "http://yunpian.com/v1/sms/send.json";
 
 	// 模板发送接口的http地址
+	/**
+	 * 
+	 */
 	private static String URI_TPL_SEND_SMS = "http://yunpian.com/v1/sms/tpl_send.json";
 
-	// 状态报告获取
+	/* 状态报告获取 */
+	/**
+	 * 
+	 */
 	@SuppressWarnings("unused")
 	private static String URI_PULL_STATUS = "http://yunpian.com/v1/sms/pull_status.json";
 
-	// 编码格式。发送编码格式统一用UTF-8
+	/* 编码格式。发送编码格式统一用UTF-8 */
+	/**
+	 * 
+	 */
 	private static String ENCODING = "UTF-8";
 
 	public static String sendCode(String tel, String apikey) throws IOException, URISyntaxException {
-		// 修改为您的apikey
+
 		/* String apikey = "2dc30c93cb9f554e82bbf644cb25f9d7"; */
 		String mobile = tel;
 
@@ -50,14 +66,14 @@ public class JavaSmsApi {
 
 		/**************** 使用模板接口发短信(不推荐) *****************/
 		// 设置模板ID，如使用1号模板:【#company#】您的验证码是#code#
-		long tpl_id = 1;
+		long tplId = 1;
 		// 设置对应的模板变量值
 		// 如果变量名或者变量值中带有#&=%中的任意一个特殊符号，需要先分别进行urlencode编码
 		// 如code值是#1234#,需作如下编码转换
 		String codeValue = URLEncoder.encode("#1234#", ENCODING);
-		String tpl_value = "#code#=" + codeValue + "&#company#=云片网";
+		String tplValue = "#code#=" + codeValue + "&#company#=云片网";
 		// 模板发送的调用示例
-		System.out.println(JavaSmsApi.tplSendSms(apikey, tpl_id, tpl_value, mobile));
+		System.out.println(JavaSmsApi.tplSendSms(apikey, tplId, tplValue, mobile));
 		return code;
 	}
 
@@ -75,8 +91,10 @@ public class JavaSmsApi {
 	public static String createRandomVcode() {
 		// 验证码
 		String vcode = "";
-		for (int i = 0; i < 6; i++) {
-			vcode = vcode + (int) (Math.random() * 9);
+		int n = 6;
+		for (int i = 0; i < n; i++) {
+			vcode = vcode + (new Random().nextInt() * 9);
+
 		}
 		return vcode;
 	}
@@ -88,7 +106,7 @@ public class JavaSmsApi {
 	 * @throws java.io.IOException
 	 */
 	public static String getUserInfo(String apikey) throws IOException, URISyntaxException {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<String, String>(1);
 		params.put("apikey", apikey);
 		return post(URI_GET_USER_INFO, params);
 	}
@@ -106,7 +124,7 @@ public class JavaSmsApi {
 	 * @throws IOException
 	 */
 	public static String sendSms(String apikey, String text, String mobile) throws IOException {
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<String, String>(1);
 		params.put("apikey", apikey);
 		params.put("text", text);
 		params.put("mobile", mobile);
@@ -118,20 +136,20 @@ public class JavaSmsApi {
 	 *
 	 * @param apikey
 	 *            apikey
-	 * @param tpl_id
+	 * @param tplId
 	 *            模板id
-	 * @param tpl_value
+	 * @param tplValue
 	 *            模板变量值
 	 * @param mobile
 	 *            接受的手机号
 	 * @return json格式字符串
 	 * @throws IOException
 	 */
-	public static String tplSendSms(String apikey, long tpl_id, String tpl_value, String mobile) throws IOException {
-		Map<String, String> params = new HashMap<String, String>();
+	public static String tplSendSms(String apikey, long tplId, String tplValue, String mobile) throws IOException {
+		Map<String, String> params = new HashMap<String, String>(1);
 		params.put("apikey", apikey);
-		params.put("tpl_id", String.valueOf(tpl_id));
-		params.put("tpl_value", tpl_value);
+		params.put("tpl_id", String.valueOf(tplId));
+		params.put("tpl_value", tplValue);
 		params.put("mobile", mobile);
 		return post(URI_TPL_SEND_SMS, params);
 	}

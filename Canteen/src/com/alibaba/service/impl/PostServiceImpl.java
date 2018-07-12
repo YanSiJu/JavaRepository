@@ -7,6 +7,10 @@ import com.alibaba.entity.Post;
 import com.alibaba.mapper.PostMpper;
 import com.alibaba.service.PostService;
 
+/**
+ * @author Bill
+ *
+ */
 @Service
 public class PostServiceImpl implements PostService {
 

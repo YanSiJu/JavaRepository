@@ -40,7 +40,7 @@ public class UserController {
 		System.out.println("\n\n\nµÇÂ¼  data----->" + data);
 		User user = null;
 		HttpSession session = request.getSession();
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>(1);
 		try {
 			JSONObject jsonObj = new JSONObject(data);
 			String name = jsonObj.getString("name");
@@ -74,7 +74,7 @@ public class UserController {
 		} catch (IOException | URISyntaxException | JSONException e) {
 			e.printStackTrace();
 		}
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>(1);
 		map.put("code", code);
 		return map;
 	}
@@ -100,7 +100,7 @@ public class UserController {
 		}
 		userService.register(name, pwd, tel);
 		System.out.println("\n\n\n×¢²á³É¹¦!!");
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>(1);
 		map.put("msg", "1");
 		return map;
 	}

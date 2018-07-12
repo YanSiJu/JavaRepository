@@ -14,17 +14,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.entity.User;
 import com.alibaba.service.PostService;
 
+
+/**
+* @author Bill
+* @itle: PostController.java
+* @Package: com.alibaba.controller
+* @Description: TODO
+* @date:2018年7月12日 下午2:50:16
+* @version:V1.0
+*/
 @Controller
 @RequestMapping("post")
 public class PostController {
 
+	/**
+	 * 
+	 */
 	@Autowired
 	private PostService service;
 
+	/**
+	 * @param data
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("post")
 	@ResponseBody
 	public Map<String, String> post(@RequestBody String data, HttpServletRequest request) {
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>(1);
 		try {
 			JSONObject jsonObj = new JSONObject(data);
 			int userId = 0;

@@ -1,5 +1,9 @@
 package com.alibaba.entity;
 
+/**
+ * @author Bill
+ *
+ */
 public class User {
 
 	private int userId;
@@ -57,44 +61,63 @@ public class User {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		User other = (User) obj;
-		if (Double.doubleToLongBits(height) != Double.doubleToLongBits(other.height))
+		if (Double.doubleToLongBits(height) != Double.doubleToLongBits(other.height)) {
 			return false;
+		}
 		if (icon == null) {
-			if (other.icon != null)
+			if (other.icon != null) {
 				return false;
-		} else if (!icon.equals(other.icon))
+			}
+		} else if (!icon.equals(other.icon)) {
 			return false;
+		}
 		if (password == null) {
-			if (other.password != null)
+			if (other.password != null) {
 				return false;
-		} else if (!password.equals(other.password))
+			}
+		} else if (!password.equals(other.password)) {
 			return false;
+		}
 		if (sex == null) {
-			if (other.sex != null)
+			if (other.sex != null) {
 				return false;
-		} else if (!sex.equals(other.sex))
+			}
+		} else if (!sex.equals(other.sex)) {
 			return false;
+		}
 		if (tel == null) {
-			if (other.tel != null)
+			if (other.tel != null) {
 				return false;
-		} else if (!tel.equals(other.tel))
+			}
+		} else if (!tel.equals(other.tel)) {
 			return false;
-		if (userId != other.userId)
-			return false;
+		}
+		if (userId != other.userId) {
+			{
+				return false;
+			}
+		}
 		if (userName == null) {
-			if (other.userName != null)
+			if (other.userName != null) {
 				return false;
-		} else if (!userName.equals(other.userName))
+			}
+		} else if (!userName.equals(other.userName)) {
 			return false;
-		if (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight))
+		}
+
+		if (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight)) {
 			return false;
+		}
 		return true;
 	}
 
