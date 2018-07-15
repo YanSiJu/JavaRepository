@@ -10,6 +10,7 @@ import com.alibaba.entity.Post;
 import com.alibaba.entity.PostComment;
 import com.alibaba.mapper.PostMpper;
 import com.alibaba.service.PostService;
+import com.alibaba.util.JedisUtil;
 
 /**
  * @author Bill
@@ -25,17 +26,14 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	private PostMpper mapper;
 
-	/**     
-	* 方法名：post</br>
-	* 详述：TODO:处理用户发的帖子</br>
-	* 开发人员：Bill </br>
-	* 创建时间：2018年7月12日  </br>
-	* @see com.alibaba.service.PostService#post(java.lang.String, java.lang.String, int)
-	* @param title
-	* @param content
-	* @param userId
-	* @throws 
-	*/
+	/**
+	 * 方法名：post</br>
+	 * 详述：TODO:处理用户发的帖子</br>
+	 * 开发人员：Bill </br>
+	 * 创建时间：2018年7月12日 </br>
+	 * @see com.alibaba.service.PostService#post(java.lang.String, java.lang.String,
+	 * int) @param title @param content @param userId @throws
+	 */
 	@Override
 	public void post(String title, String content, int userId) {
 		LocalDateTime time = LocalDateTime.now();
@@ -43,15 +41,13 @@ public class PostServiceImpl implements PostService {
 		mapper.insertPost(p);
 	}
 
-	/**     
-	* 方法名：queryAndOrderPosts</br>
-	* 详述：TODO（简单方法可一句话概述）</br>
-	* 开发人员：Bill </br>
-	* 创建时间：2018年7月12日  </br>
-	* @see com.alibaba.service.PostService#queryAndOrderPosts()
-	* @return
-	* @throws 
-	*/
+	/**
+	 * 方法名：queryAndOrderPosts</br>
+	 * 详述：TODO（简单方法可一句话概述）</br>
+	 * 开发人员：Bill </br>
+	 * 创建时间：2018年7月12日 </br>
+	 * @see com.alibaba.service.PostService#queryAndOrderPosts() @return @throws
+	 */
 	@Override
 	public List<Post> queryAndOrderPosts() {
 		List<Post> posts = mapper.selectPosts();
@@ -73,27 +69,27 @@ public class PostServiceImpl implements PostService {
 		return posts;
 	}
 
-	/**     
-	* 方法名：commentPost</br>
-	* 详述：TODO（简单方法可一句话概述）</br>
-	* 开发人员：Bill </br>
-	* 创建时间：2018年7月15日  </br>
-	* @see com.alibaba.service.PostService#commentPost(java.lang.String, int, int)
-	* @param content
-	* @param userId
-	* @param postId
-	* @throws 
-	*/
+	/**
+	 * 方法名：commentPost</br>
+	 * 详述：TODO（简单方法可一句话概述）</br>
+	 * 开发人员：Bill </br>
+	 * 创建时间：2018年7月15日 </br>
+	 * @see com.alibaba.service.PostService#commentPost(java.lang.String, int,
+	 * int) @param content @param userId @param postId @throws
+	 */
 	@Override
 	public void commentPost(String content, int userId, int postId) {
-			PostComment cmmt = new PostComment(0, postId, content, LocalDateTime.now(), userId);
-			mapper.insertComment(cmmt);
+		PostComment cmmt = new PostComment(0, postId, content, LocalDateTime.now(), userId);
+		mapper.insertComment(cmmt);
 	}
 
 	@Override
-	public boolean praise(int postId,int userId) {
+	public boolean praise(int postId, int userId) {
+		if (!JedisUtil.addToPostPraiseHSet(userId, postId)) {
 			mapper.praise(postId);
-			return false;
+			return true;
+		}
+		return false;
 	}
 
 }

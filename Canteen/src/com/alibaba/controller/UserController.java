@@ -17,10 +17,15 @@ import com.alibaba.entity.User;
 import com.alibaba.service.UserService;
 import com.yunpian.JavaSmsApi;
 
+
 /**
- * @author Bill
- *
- */
+* @author Bill
+* @title: UserController.java
+* @Package: com.alibaba.controller
+* @Description: TODO
+* @date:2018年7月15日 下午6:41:10
+* @version:V1.0
+*/
 @Controller
 @RequestMapping("User")
 public class UserController {
