@@ -5,10 +5,15 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import com.alibaba.entity.User;
 
+
 /**
- * @author Bill
- *
- */
+* @author Bill
+* @title: UserMapper.java
+* @Package: com.alibaba.mapper
+* @Description: TODO
+* @date:2018年7月15日 下午5:26:00
+* @version:V1.0
+*/
 @Repository
 public interface UserMapper {
 

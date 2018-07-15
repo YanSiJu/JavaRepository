@@ -84,4 +84,50 @@ public class PostController {
 		return map;
 	}
 
+	@RequestMapping("commentPosts")
+	@ResponseBody
+	public Map<String, String> praise(@RequestBody String data, HttpServletRequest request) {
+		Map<String, String> map = new HashMap<>(1);
+		JSONObject jsonObject = null;
+		try {
+			jsonObject = new JSONObject(data);
+			int postId = (int) jsonObject.get("postId");
+			User user = (User) request.getSession().getAttribute("user");
+			if (user != null) {
+				if (service.praise(postId, user.getUserId())) {
+					map.put("msg", "1");
+				} else {
+					map.put("msg", "0");
+				}
+			} else {
+				map.put("msg", "0");
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	@RequestMapping("commentPosts")
+	@ResponseBody
+	public Map<String, String> commentPosts(@RequestBody String data, HttpServletRequest request) {
+		Map<String, String> map = new HashMap<>(1);
+		JSONObject jsonObject = null;
+		try {
+			jsonObject = new JSONObject(data);
+			String comment = (String) jsonObject.get("comment");
+			int postId = (int) jsonObject.get("postId");
+			User user = (User) request.getSession().getAttribute("user");
+			if (user != null) {
+				service.commentPost(comment, user.getUserId(), postId);
+				map.put("msg", "1");
+			} else {
+				map.put("msg", "0");
+			}
+		} catch (JSONException e) {
+			map.put("msg", "0");
+			e.printStackTrace();
+		}
+		return map;
+	}
 }

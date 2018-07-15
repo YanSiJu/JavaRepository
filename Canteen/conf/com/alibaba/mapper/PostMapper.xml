@@ -11,8 +11,28 @@
 	</insert>
 
 	<!-- List<Post> selectPosts(); -->
-	<select id="selectPosts"  resultType="com.alibaba.entity.Post">
+	<select id="selectPosts" resultType="com.alibaba.entity.Post">
 		select * from posts
 	</select>
+
+
+	<!-- void insertComment(PostComment cmmt) -->
+	<insert id="insertComment">
+		INSERT INTO
+		`PostsComment`(postsId,content,time,userId) VALUES
+		(#{postsId},#{content},#{time},#{userId});
+	</insert>
+
+
+	<!-- void praise(@Param("postsId") int postsId) -->
+	<update id="praise">
+		update posts
+		set praiseCount = praiseCount + 1
+		<where>
+			<if test="postsId != null">
+				postsId = #{postsId}
+			</if>
+		</where>
+	</update>
 
 </mapper>

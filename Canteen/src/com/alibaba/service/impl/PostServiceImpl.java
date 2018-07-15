@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alibaba.entity.Post;
+import com.alibaba.entity.PostComment;
 import com.alibaba.mapper.PostMpper;
 import com.alibaba.service.PostService;
 
@@ -26,7 +27,7 @@ public class PostServiceImpl implements PostService {
 
 	/**     
 	* 方法名：post</br>
-	* 详述：TODO（简单方法可一句话概述）</br>
+	* 详述：TODO:处理用户发的帖子</br>
 	* 开发人员：Bill </br>
 	* 创建时间：2018年7月12日  </br>
 	* @see com.alibaba.service.PostService#post(java.lang.String, java.lang.String, int)
@@ -70,6 +71,29 @@ public class PostServiceImpl implements PostService {
 		};
 		Collections.sort(posts, c);
 		return posts;
+	}
+
+	/**     
+	* 方法名：commentPost</br>
+	* 详述：TODO（简单方法可一句话概述）</br>
+	* 开发人员：Bill </br>
+	* 创建时间：2018年7月15日  </br>
+	* @see com.alibaba.service.PostService#commentPost(java.lang.String, int, int)
+	* @param content
+	* @param userId
+	* @param postId
+	* @throws 
+	*/
+	@Override
+	public void commentPost(String content, int userId, int postId) {
+			PostComment cmmt = new PostComment(0, postId, content, LocalDateTime.now(), userId);
+			mapper.insertComment(cmmt);
+	}
+
+	@Override
+	public boolean praise(int postId,int userId) {
+			mapper.praise(postId);
+			return false;
 	}
 
 }
