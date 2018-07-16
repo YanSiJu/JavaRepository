@@ -84,7 +84,7 @@ public class PostController {
 		return map;
 	}
 
-	@RequestMapping("commentPosts")
+	@RequestMapping("praise")
 	@ResponseBody
 	public Map<String, String> praise(@RequestBody String data, HttpServletRequest request) {
 		Map<String, String> map = new HashMap<>(1);

@@ -31,7 +31,7 @@ public class MenuController {
 	@Autowired
 	private MenuService service;
 
-	@RequestMapping("commentPosts")
+	@RequestMapping("praise")
 	@ResponseBody
 	public Map<String, String> praise(@RequestBody String data, HttpServletRequest request) {
 		Map<String, String> map = new HashMap<>(1);

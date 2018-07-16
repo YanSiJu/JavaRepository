@@ -1,6 +1,8 @@
 package com.alibaba.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.alibaba.mapper.MenuMapper;
 import com.alibaba.service.MenuService;
 import com.alibaba.util.JedisUtil;
@@ -13,6 +15,7 @@ import com.alibaba.util.JedisUtil;
  * @date:2018年7月15日 下午5:25:13
  * @version:V1.0
  */
+@Service
 public class MenuServiceImpl implements MenuService {
 
 	@Autowired
