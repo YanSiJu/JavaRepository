@@ -1,6 +1,10 @@
 package com.alibaba.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import com.alibaba.entity.Menu;
 
 /**
  * @author Bill
@@ -18,23 +22,33 @@ public interface MenuService {
 	 * 详述：</br> 
 	 * 开发人员：Bill </br> 
 	 * 创建时间：2018年7月15日 </br> 
-	 * @param postId 
+	 * @param  postId 
 	 * @param userId 
 	 * @return 
 	 * @throws
 	 */
 	boolean praise(int menuId, int userId);
 
+	/**
+	 * 方法名：commentMenu</br> 
+	 * 详述：TODO（简单方法可一句话概述）</br> 
+	 * 开发人员：Bill </br> 
+	 * 创建时间：2018年7月15日 </br> 
+	 * @param content 
+	 * @param userId 
+	 * @param postId 
+	 * @throws
+	 */
+	void commentMenu(String content, int userId, int menuId);
+
 	/**     
-	* 方法名：commentMenu</br>
+	* 方法名：queryMenu</br>
 	* 详述：TODO（简单方法可一句话概述）</br>
 	* 开发人员：Bill </br>
-	* 创建时间：2018年7月15日  </br>
-	* @param content
-	* @param userId
-	* @param postId
+	* 创建时间：2018年7月16日  </br>
+	* @return
 	* @throws 
 	*/
-	void commentMenu(String content, int userId, int menuId);
+	List<Menu> queryMenu();
 
 }

@@ -1,8 +1,11 @@
 package com.alibaba.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.entity.Menu;
 import com.alibaba.mapper.MenuMapper;
 import com.alibaba.service.MenuService;
 import com.alibaba.util.JedisUtil;
@@ -33,6 +36,12 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public void commentMenu(String content, int userId, int menuId) {
 
+	}
+
+	@Override
+	public List<Menu> queryMenu() {
+		List<Menu> menu = mapper.selectMenu();
+		return menu;
 	}
 
 }

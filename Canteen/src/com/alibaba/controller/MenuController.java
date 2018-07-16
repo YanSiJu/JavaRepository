@@ -55,10 +55,18 @@ public class MenuController {
 		return map;
 	}
 
-	@RequestMapping("commentPosts")
+	@RequestMapping("commentMenu")
 	@ResponseBody
-	public Map<String, String> commentPosts(@RequestBody String data, HttpServletRequest request) {
+	public Map<String, String> commentMenu(@RequestBody String data, HttpServletRequest request) {
 
+		Map<String, String> map = new HashMap<>(1);
+		return map;
+	}
+
+	@RequestMapping("displayMenu")
+	@ResponseBody
+	public Map<String, String> displayMenu(@RequestBody String data) {
+		service.queryMenu();
 		Map<String, String> map = new HashMap<>(1);
 		return map;
 	}
