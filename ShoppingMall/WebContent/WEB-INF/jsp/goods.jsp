@@ -100,7 +100,7 @@ a {
 					style="width: 100px">
 			</a> <br>
 				<p>
-					<big style="color: red;">￥${prices[status.count-1].price}0</big> <br>
+					<span style="color: red;">￥${prices[status.count-1].price}0</span> <br>
 					${goods[status.count-1].name} <br>
 					销量:${prices[status.count-1].salesVolume}
 				</p></td>

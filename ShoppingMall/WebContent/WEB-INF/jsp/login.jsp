@@ -31,7 +31,7 @@
 
 			<form action="${pageContext.request.contextPath }/User/login"
 				method="post">
-				<table width="100%" border="0">
+				<table>
 
 					<tr>
 						<td class="td"></td>

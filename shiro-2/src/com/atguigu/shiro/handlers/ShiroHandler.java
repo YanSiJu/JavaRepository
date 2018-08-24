@@ -16,41 +16,43 @@ import com.atguigu.shiro.services.ShiroService;
 @Controller
 @RequestMapping("/shiro")
 public class ShiroHandler {
-	
+
 	@Autowired
 	private ShiroService shiroService;
-	
+
 	@RequestMapping("/testShiroAnnotation")
-	public String testShiroAnnotation(HttpSession session){
+	public String testShiroAnnotation(HttpSession session) {
 		session.setAttribute("key", "value12345");
 		shiroService.testMethod();
 		return "redirect:/list.jsp";
 	}
 
 	@RequestMapping("/login")
-	public String login(@RequestParam("username") String username, 
-			@RequestParam("password") String password){
+	public String login(@RequestParam(value = "username", required = false, defaultValue = "") String username,
+			@RequestParam(value = "password", required = false, defaultValue = "") String password) {
+
 		Subject currentUser = SecurityUtils.getSubject();
-		
+
 		if (!currentUser.isAuthenticated()) {
-        	// 把用户名和密码封装为 UsernamePasswordToken 对象
-            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-            // rememberme
-            token.setRememberMe(true);
-            try {
-            	System.out.println("1. " + token.hashCode());
-            	// 执行登录. 
-                currentUser.login(token);
-            } 
-            // ... catch more exceptions here (maybe custom ones specific to your application?
-            // 所有认证时异常的父类. 
-            catch (AuthenticationException ae) {
-                //unexpected condition?  error?
-            	System.out.println("登录失败: " + ae.getMessage());
-            }
-        }
-		
+			// 把用户名和密码封装为 UsernamePasswordToken 对象
+			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+			// rememberme
+			token.setRememberMe(true);
+			try {
+				System.out.println("1. " + token.hashCode());
+				// 执行登录.
+				currentUser.login(token);
+			}
+			// ... catch more exceptions here (maybe custom ones specific to your
+			// application?
+			// 所有认证时异常的父类.
+			catch (AuthenticationException ae) {
+				// unexpected condition? error?
+				System.out.println("登录失败: " + ae.getMessage());
+			}
+		}
+
 		return "redirect:/list.jsp";
 	}
-	
+
 }

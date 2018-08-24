@@ -9,7 +9,6 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * 短信http接口的java代码调用示例 依赖Apache HttpClient 3.1
@@ -89,14 +88,12 @@ public class JavaSmsApi {
 	 * @ModifyDate: 2015年4月17日 下午7:19:02
 	 */
 	public static String createRandomVcode() {
-		// 验证码
-		String vcode = "";
-		int n = 6;
-		for (int i = 0; i < n; i++) {
-			vcode = vcode + (new Random().nextInt() * 9);
-
-		}
-		return vcode;
+				// 验证码
+				String vcode = "";
+				for (int i = 0; i < 6; i++) {
+					vcode = vcode + (int) (Math.random() * 9);
+				}
+				return vcode;
 	}
 
 	/**

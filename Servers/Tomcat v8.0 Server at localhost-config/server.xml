@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="SpringPro" path="/spring" reloadable="true" source="org.eclipse.jst.jee.server:SpringPro"/><Context docBase="ShoppingMall" path="/ShoppingMall" reloadable="true" source="org.eclipse.jst.jee.server:ShoppingMall"/><Context docBase="CMS" path="/CMS" reloadable="true" source="org.eclipse.jst.jee.server:CMS"/><Context docBase="Canteen" path="/Canteen" reloadable="true" source="org.eclipse.jst.jee.server:Canteen"/><Context docBase="BlogDemo" path="/BlogDemo" reloadable="true" source="org.eclipse.jst.jee.server:BlogDemo"/><Context docBase="shiro-2" path="/shiro-2" reloadable="true" source="org.eclipse.jst.jee.server:shiro-2"/></Host>
+      <Context docBase="ShoppingMall" path="/ShoppingMall" reloadable="true" source="org.eclipse.jst.jee.server:ShoppingMall"/><Context docBase="Canteen" path="/Canteen" reloadable="true" source="org.eclipse.jst.jee.server:Canteen"/><Context docBase="SpringRedis" path="/SpringRedis" reloadable="true" source="org.eclipse.jst.jee.server:SpringRedis"/><Context docBase="ShiroExer" path="/ShiroExer" reloadable="true" source="org.eclipse.jst.jee.server:ShiroExer"/><Context docBase="shiro-2" path="/shiro-2" reloadable="true" source="org.eclipse.jst.jee.server:shiro-2"/></Host>
     </Engine>
   </Service>
 </Server>
