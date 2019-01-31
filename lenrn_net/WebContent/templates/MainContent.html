@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IT学习网站</title>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .head-two div{
+            height: 120px;
+            line-height: 120px;
+        }
+        .head-two-left h1{
+            font-size: 40px;
+        }
+        #search input{
+            margin-top: 50px;
+        }
+        .row{
+            margin-top: 5px;
+        }
+        #carousel{
+            min-height: 200px;
+        }
+        .img{
+            height: 240px;
+            width: 100%;
+        }
+        #card{
+            border: 2px solid gainsboro;
+            height: 238px;
+        }
+
+        #ol{
+            list-style-type: circle;
+            height: 140px;
+        }
+        #ol li{
+            line-height: 30px;
+        }
+        #content{
+            min-height: 400px;
+            border: 2px solid gainsboro;
+        }
+        #content font{
+            font-size: 15px;
+            font-weight: bold;
+        }
+        #selects{
+            height: 30px;
+            color: gray;
+        }
+        #example-2{
+            min-height: 420px;
+            text-align: center;
+        }
+        #example-2 img{
+            margin-top: 10px;
+        }
+        #example-2 p{
+            line-height: 40px;
+            color: gray;
+        }
+        .contentImg{
+            height: 120px;
+            width: 120px;
+        }
+        #card2 font{
+            font-weight: bold;
+        }
+        #bottom p{
+            line-height: 50px;
+        }
+        #category{
+            float: right;
+        }
+        #btn{
+        	border: 0px;
+        	background: transparent;
+        	color: gray;
+        }
+        #todo1{
+        	height: 170px;
+        }
+        #pages{
+        	margin-top: 0px;
+        	text-align: center;
+        }
+        #grossPages{
+        	float: right;
+        }
+        .thePagenumber{
+        	display: inline;
+        	padding: 5px;
+        }
+        .a_page{
+        	border: 0px;
+        	background: transparent;
+        }
+        .a_page:hover{
+        	color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="layui-row row">
+        <div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12" id="carousel">
+            <div class="layui-col-md8 layui-col-sm12">
+                <div class="layui-carousel layui-col-md12" id="test1" lay-filter="test1">
+                    <div carousel-item="">
+                        <div><img src="../images/1.jpg" class="img"></div>
+                        <div><img src="../images/2.jpg" class="img"></div>
+                        <div><img src="../images/3.jpg" class="img"></div>
+                        <div><img src="../images/4.jpg" class="img"></div>
+                        <div><img src="../images/5.jpg" class="img"></div>
+                        <div><img src="../images/6.jpg" class="img"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md4 layui-col-sm12">
+                <div class="layui-card" id="card">
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-template" style="font-size: 30px; color: #1E9FFF;"></i>
+                		作品展览
+                    </div>
+                    <div class="layui-card-body" id="todo1">
+                        <ul id="ol">
+                            <li v-for="(item,index) in list">
+                                <button id="btn" @click="ToDetails(index)">◆&nbsp;{{item.exhibitionName}}</button>
+                            </li>
+                        </ul>
+                        <div class="layui-col-md12" id="pages">
+                        	<button id="last" @click="lastPage()">上一页</button>
+                        		<li class="thePagenumber" v-for="(item,index) in pagelist">
+                        			<button class="a_page" @click="gotoPage(index)">{{item.pages}}</button>
+                        		</li>
+                        	</ul>
+                        	<button @click="nextPage()">下一页</button>
+                        	<font id="grossPages">总页数：<font>{{grossPage}}</font></font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row row">
+        <div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12" id="content">
+            <div class="layui-col-md12 layui-col-sm12">
+                <div class="layui-col-md6 layui-col-sm6">
+                    <i class="layui-icon layui-icon-tree" style="font-size: 30px; color: #1E9FFF;"></i>
+                    <font>JavaEE编程</font>
+                </div>
+                <div class="layui-col-md5 layui-col-sm5">
+                    <div id="category">
+                		教程类别：
+                        <select id="selects" lay-verify="">
+                            <option value="all">全部教程</option>
+                            <option value="基础知识">基础知识</option>
+                            <option value="进阶知识">进阶知识</option>
+                            <option value="拓展知识">拓展知识</option>
+                            <option value="实例教程">实例教程</option>
+                        </select>
+                    </div>
+                </div>
+                <hr class="layui-bg-gray">
+            </div>
+            <div class="layui-col-md12 layui-col-sm12" id="example-2">
+                <div class="layui-col-md2 layui-col-sm2" v-for="(item,index) of list" @click="swiitchover(index)">
+                    <img class="contentImg" v-bind:src="item.resourceImg" />
+                    <p>{{ item.resourceName }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+	//页面加载初始化
+	$(function(){
+		todo1.getExhibition();
+        example2.create();
+	})
+	
+    layui.use('element',function(){
+        var element = layui.element;
+    })
+
+
+    layui.use('carousel',function(){
+        var carousel = layui.carousel;
+        //常规轮播
+        carousel.render({
+            elem: '#test1'
+            ,width:'920px'
+            ,height: '240px'
+            ,interval: 3000
+        });
+    })
+
+    var todo1 = new Vue({
+        el:"#todo1",
+        data:{
+        	pageData:[],
+        	currentPage:1,
+        	grossPage:1,
+        	numbers:1,
+        	everypageNumbers:4,
+            list:[
+                {
+                	exhibitionId:0,
+                	exhibitionName:"java学习网站"
+                }
+            ],
+            pagelist:[
+            	{
+            		pages:1
+            	}
+            ]
+        },
+        methods:{
+        	getExhibition:function(){
+        		$.ajax({
+        			type:"GET",
+                    contentType:"application/json",
+                    url:"http://localhost:8080/lenrn/exhibition/getAll",
+                    dataType:'json',
+                    success:function(data){
+                    	var grossPage = Math.ceil(data.length/4);
+                    	todo1.pageData=data;
+                    	todo1.numbers=data.length;
+                    	todo1.grossPage = grossPage;
+                    	todo1.paging(todo1.currentPage,todo1.everypageNumbers);
+                    	todo1.displayIndex(grossPage);
+                    	todo1.gotoPage(-1);
+//                      todo1.list.splice(0);
+//                      for(var i=0;i<data.length;i++){
+//                          todo1.list.splice(i,0,data[i]);
+//                      }
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+        		})
+        	},
+        	ToDetails:function(index){
+        		var _self = this;
+        		var exhibitionId = _self.list[index].exhibitionId;
+        		window.location.href="ExhibitionDetails.html?exhibitionId="+exhibitionId;
+        	},
+        	paging:function(currentPage,everyNumber){
+        		var start = (currentPage-1)*everyNumber;
+        		var end =0;
+        		if(currentPage*everyNumber>todo1.numbers){
+        			end = todo1.numbers;
+        		}else{
+        			end = currentPage*everyNumber;        			
+        		}
+        		todo1.list.splice(0);
+        		for(var i=start;i<end;i++){
+        			todo1.list.splice(i,0,todo1.pageData[i]);
+        		}
+        	},
+        	nextPage:function(){
+        		if(todo1.currentPage==todo1.grossPage){
+        			return false;
+        		}
+        		todo1.currentPage = todo1.currentPage+1;
+//      		todo1.paging(todo1.currentPage,todo1.everypageNumbers);
+				todo1.gotoPage(todo1.currentPage-1);
+        	},
+        	lastPage:function(){
+        		if(todo1.currentPage==1){
+        			return false;
+        		}
+        		todo1.currentPage = todo1.currentPage-1;
+//      		todo1.paging(todo1.currentPage,todo1.everypageNumbers);        		
+				todo1.gotoPage(todo1.currentPage-1);
+        	},
+        	displayIndex:function(grosspages){
+        		todo1.pagelist.splice(1);
+        		for(var i=1;i<grosspages;i++){
+        			var pages={
+        				pages:i+1
+        			}
+        			todo1.pagelist.splice(i,0,pages);
+        		}
+        	},
+        	gotoPage:function(index){
+        		if(-1==index){
+        			$('.a_page').css("color","blue");        			
+        		}else{
+        			$('.a_page').attr("style","color:black;"); 
+        			document.getElementsByClassName("a_page")[index].style.color="blue"; 
+        			todo1.paging(index+1,todo1.everypageNumbers);
+        		}
+        	}
+        }
+    })
+
+    //初始化grade
+    var grade = "all";
+
+
+    //触发级别选项
+    $('#selects').change(function () {
+        grade = $('#selects option:selected').val();
+        example2.create();
+    })
+
+
+    //绑定Vue
+    var example2 = new Vue({
+        el: '#example-2',
+        data:{
+            code:1,
+            message:"success",
+            grade:"all",
+            list:[
+                {
+                    "resourceId": 0,
+                    "resourceName": "",
+                    "resourceAddress":"",
+                    "resourceCreatetime": "",
+                    "resourceDownloads": 0,
+                    "uploaderId": 0,
+                    "resourceImg": ""
+                }
+            ]
+        },
+        methods:{
+            create:function(){
+                var _self = this;
+                $.ajax({
+                    type:"GET",
+                    contentType:"application/json",
+                    url:"http://localhost:8080/lenrn/resource/getBySubjectAndGrade?subject=JavaEE&grade="+grade,
+                    dataType:'json',
+                    success:function(data){
+                        if(data.list.length==0){
+                            alert("暂时没有该类教程！");
+                        }
+                        example2.list.splice(1);
+                        example2.$set(example2.list,0,data.list[0]);
+                        for(var i=1;i<data.list.length;i++){
+                            example2.list.splice(i,0,data.list[i]);
+                        }
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+                })
+            },
+            swiitchover:function (index) {
+                var _self = this;
+                var Id = _self.list[index].resourceId;
+                var Name = _self.list[index].resourceName;
+                var Createtime = _self.list[index].resourceCreatetime;
+                var Downloads = _self.list[index].resourceDownloads;
+                var uploaderId = _self.list[index].uploaderId;
+                var resourceAddress = _self.list[index].resourceAddress;
+                var hr = "details.html?Id="+Id+"&Name="+Name+"&Createtime="+Createtime+"&Downloads="+Downloads
+                		+"&uploaderId="+uploaderId+"&resourceAddress="+resourceAddress;
+            	hr = encodeURI(hr);
+            	window.location.href = hr;
+            }
+        }
+    })
+
+
+    var ol1 = new Vue({
+        el:'#ol1',
+        data:{
+            items:[
+                {
+                    "name":"慕课网",
+                    "href":"https://www.imooc.com/"
+                },
+                {
+                    "name":"腾讯课堂",
+                    "href":"https://ke.qq.com/"
+                }
+            ]
+        }
+    })
+</script>
+</html>

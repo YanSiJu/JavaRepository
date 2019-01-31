@@ -1,0 +1,2 @@
+datagramChannel.receive(buffer):
+datagramChannel中的数据大小超出缓冲区的大小时会如何

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>展览详情</title>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		#brow{
+            margin-top: 5px;
+        }
+        #BriefIntroduction{
+        	margin-top: 5px;
+    		border: 2px solid gold;
+        	min-height: 160px;
+        }
+        #content{
+        	margin-top: 5px;
+        	border: 2px solid gainsboro;
+        	overflow: auto;
+        	min-height: 460px;
+        }
+        img{
+        	height: 400px;
+        	width: 400px;
+		    margin-left: 460px;
+        }
+	</style>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12" id="brow">
+    	<p>当前位置：<a href="MainContent.html">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;<font id="de_title">展览中心</font></p>
+    </div>
+	<div class="layui-col-md8 layui-col-md-offset2" id="BriefIntroduction">
+		<div class="layui-col-md12">
+			<div class="layui-card">
+				<div class="layui-card-header">项目简介</div>
+				<div class="layui-card-body">
+				    <p id="introdution">卡片式面板面板通常用于非白色背景色的主体内<br>从而映衬出边框投影</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="layui-col-md8 layui-col-md-offset2" id="content">
+		<div class="layui-col-md12">
+			<div class="layui-card">
+				<div class="layui-card-header" id="contentHead">项目详情</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script>
+	var div = '卡片式面板面板通常用于非白色背景色的主体内<br>从而映衬出边框投影';
+	$(function(){
+		var href = window.location.href;
+		var exhibitionId = href.split("?")[1].split("=")[1];
+		display(exhibitionId);
+	})
+	
+	function display(exhibitionId){
+		$.ajax({
+			type:"get",
+            url: "http://localhost:8080/lenrn/exhibition/getById?exhibitionId="+exhibitionId,
+			async:true,
+			success:function(data){
+				$("#de_title").text(data.exhibitionName);
+				$("#introdution").text(data.exhibitionDescription);
+				$("#contentHead").after('<div class="layui-card-body">'+data.exhibitionContent+'</div>');
+			},
+			error:function(){
+				alert("冷静");
+			}
+		});
+	}
+</script>
+</html>

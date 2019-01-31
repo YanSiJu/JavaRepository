@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		#head{
+			height: 120px;
+		}
+		#head h1{
+			line-height: 120px;
+			font-size:40px;
+		}
+		#head h3{
+			line-height: 120px;
+			font-size: 16px;
+		}
+		#content{
+			height: 600px;
+			background: url(../images/back.jpg);
+			background-size: cover;
+		}
+		#formcontent{
+			height: 500px;
+			margin-top: 50px;
+			background-color: rgba(0,0,0,0.5);
+			border: 2px solid gainsboro;
+		}
+		#contenthead{
+			height: 80px;
+		}
+		#contenthead div{
+			text-align: center;
+			line-height: 80px;
+		}
+		#login,#register{
+			font-size: 24px;
+			border: none;
+			background: transparent;
+			color: gainsboro;
+		}
+		#contentcenter{
+			height: 320px;
+			text-align: center;
+		}
+		#registerCenter{
+			height: 320px;
+			text-align: center;			
+		}
+		#contentbottom{
+			height: 100px;
+		}
+		input{
+			background: transparent;
+			height: 40px;
+			border:1px solid gainsboro;
+			width: 70%;
+			margin-top: 20px;
+		}
+		.button{
+			background: #FF6700;
+			height: 40px;
+			border:1px solid gainsboro;
+			width: 70%;
+			margin-top: 20px;
+		}
+		#replennish{
+			width: 70%;
+			margin-left: 15%;
+			margin-top: 10px;
+		}
+		#phonelog{
+			float: left;
+			color: #FF6700;
+		}
+		#forgetPass{
+			float: right;
+			color: gray;
+		}
+		#otherWayLon{
+			text-align: center;
+		}
+		#loginBottom{
+			text-align: center;
+			height: 60px;
+			line-height: 60px;
+		}
+		input{
+			color: #FF6700;
+			font-size: 22px;
+			text-indent: 10px;
+		}
+	</style>
+</head>
+<body>
+<div class="layui-row">
+	<div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12" id="head">
+		<div class="layui-col-md2 layui-col-sm4 head-two-left"><h1>彩笔小队 </h1></div>
+		<div class="layui-col-md2 layui-col-lg-offset layui-col-sm4 head-two-left"><h3>JAVA开发</h3></div>
+	</div> 	
+	<div class="layui-col-md12 layui-col-sm12 layui-bg-cyan" id="content">
+		<div class="layui-col-md3 layui-col-md-offset6 layui-col-sm6 layui-col-sm-offset4" id="formcontent">
+			<div class="layui-col-md12 layui-col-sm12" id="contenthead">
+				<div class="layui-col-md3 layui-col-md-offset2 layui-col-sm5">
+					<button id="login">账号登录</button>
+				</div>
+				<div class="layui-col-md2 layui-col-sm2">
+					|
+				</div>
+				<div class="layui-col-md3 layui-col-sm5">
+					<button id="register">用户注册</button>
+				</div>
+			</div>
+			<div class="layui-col-md12 layui-col-sm12" id="contentcenter">
+				<form name="form1" method="get" action="mainpage.html" onsubmit="return checkform();">
+					<div>
+						<input type="text" class="userId" placeholder="UserName" />
+					</div>
+					<div>
+						<input type="password" class="userPassword" placeholder="Password" />
+					</div>
+					<div>
+						<button class="button" type="submit" >登录</button>
+					</div>
+					<div id="replennish">
+						<font id="phonelog">手机号码登录</font>
+						<font id="forgetPass">忘记密码?</font>
+					</div>
+				</form>	
+			</div>
+			<div class="layui-col-md12 layui-col-sm12" id="registerCenter">
+				<form method="post" action="">	
+					<div>
+						<input type="text" id="userName" name="userName" placeholder="  UserName" />
+					</div>
+					<div>
+						<input type="password" id="password1" name="userPassword" placeholder="  Password" />
+					</div>
+					<div>
+						<input type="password" id="password2" name="RegisterPassword2" placeholder="  Password" />
+					</div>					
+					<div>
+						<button class="button" type="button" onclick="checkRegistForm();">注册</button>
+					</div>
+				</form>	
+			</div>
+			<div class="layui-col-md12 layui-col-sm12" id="contentbottom">
+				<div class="layui-col-md8 layui-col-md-offset2">
+					<div class="layui-col-md4" id="otherWayLon">
+						<hr class="layui-bg-gray" />
+					</div>
+					<div class="layui-col-md4" id="otherWayLon">
+						<font>其他方式登录</font>
+					</div>
+					<div class="layui-col-md4">
+						<hr class="layui-bg-gray" />
+					</div>
+				</div>
+				<div class="layui-col-md12" id="loginBottom">
+					<div class="layui-col-md2 layui-col-md-offset2">
+						<i class="layui-icon layui-icon-login-qq" style="font-size: 30px; color: #1E9FFF;"></i> 
+					</div>
+					<div class="layui-col-md2">
+						<i class="layui-icon layui-icon-login-weibo" style="font-size: 30px; color: #1E9FFF;"></i>
+					</div>
+					<div class="layui-col-md2">
+						<i class="layui-icon layui-icon-login-wechat" style="font-size: 30px; color: #1E9FFF;"></i>
+					</div>
+					<div class="layui-col-md2">
+						<i class="layui-icon layui-icon-website" style="font-size: 30px; color: #1E9FFF;"></i>
+					</div>					
+				</div>
+			</div>			
+		</div>
+	</div>
+</div>
+</body>
+<script>
+	$(function(){
+		$('#registerCenter').hide();
+		$('#login').css("color","#FF6700");
+		//防止页面后退
+		history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+	})
+	$('#login').click(function(){
+		$('#login').css("color","#FF6700");
+		$('#register').css("color","#FFFFFF");
+		$('#registerCenter').hide();
+		$('#contentcenter').show();
+	})
+	
+	$('#register').click(function(){
+		$('#login').css("color","#FFFFFF");
+		$('#register').css("color","#FF6700");
+		$('#contentcenter').hide();
+		$('#registerCenter').show();
+	})
+	
+	//校验表单
+	function checkform(){
+		var userId = $('.userId')[0].value;
+		var userPassword = $('.userPassword')[0].value;
+		$.ajax({
+			type:"GET",
+			contentType:"application/json",
+			url:"http://localhost:8080/lenrn/user/login",		
+			data:{
+				userId:userId,
+				userPassword:userPassword
+			},
+			dataType:"json",
+			success:function(data){
+				if(data.state=="success"){
+					var sessionId = data.sessionID;
+					window.location.href = "mainpage.html?userid="+userId;
+				}else{
+					alert(data.state);
+					return false;
+				}
+			},
+            error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("账号或密码错误！");
+            }
+		})
+		return false;
+	}
+	
+	
+	//检验注册表单
+	function checkRegistForm(){
+		var userName = $('#userName').val().trim();
+		var userPassword = $('#password1').val().trim();
+		if(""==$('#userName').val().trim()||""==$('#password1').val().trim()){
+			alert("信息不完整!");
+			return false;
+		}
+		if($('#password1').val()!=$('#password2').val()){
+			alert("俩次输入密码不一致");
+			return false;
+		}
+		
+		var data1 = {
+			"userName":userName,
+			"userPassword":userPassword
+		}
+		
+		$.ajax({
+			type:"POST",
+			contentType:"application/json",
+			url:"http://localhost:8080/lenrn/user/register",
+			data:JSON.stringify(data1),
+			success:function(data){
+				alert("注册成功！你的ID为："+data.userId);
+				$('#login').click();
+			},
+			error:function(){
+				alert("未连接到服务器!");
+			}
+		})
+		
+	}
+</script>
+</html>
+
+
+

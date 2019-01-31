@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>上传展览作品</title>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		#titel{
+			line-height: 80px;
+		}
+		#content{
+			border: 2px solid gainsboro;
+			min-height: 600px;
+			padding: 10px;
+			font-size: 16px;
+		}
+		.input{
+			height: 30px;
+			width: 200px;
+			border-radius: 9px;
+			text-align: center;
+			line-height: 30px;
+		}
+		.textarea1{
+			width: 80%;
+			margin-top: 5px;
+			border-radius: 9px;
+			padding: 10px;
+			line-height: 25px;
+		}
+		#textarea{
+			margin-top: 5px;
+		    width: 80%;
+		    min-height: 600px;
+		    _height: 120px;
+		    outline: 0;
+		    padding: 10px;
+		    border: 1px solid #a0b3d6;
+		    line-height: 24px;
+		    word-wrap: break-word;
+		    overflow-x: hidden;
+		    overflow-y: auto;
+		 	border-radius: 9px;
+		}
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div class="layui-col-md8 layui-col-md-offset2">
+			<h1 id="titel">优秀作品上传</h1>
+		</div>
+		<div class="layui-col-md8 layui-col-md-offset2" id="content">
+			<div class="layui-col-md12">
+				作品名：<input id="up_title" class="input" type="text" />
+			</div>
+			<div class="layui-col-md12">
+				作品简介：<br><textarea id="up_introduction" class="textarea1" rows="5" cols="120"></textarea>
+			</div>
+			<div class="layui-col-md12">
+				<div class="layui-col-md12">
+					<font>作品内容：</font>
+				</div>
+				<div id="textarea" contenteditable="true"><br /></div>
+			</div>
+			<div class="layui-col-md12">
+				<div class="layui-col-md6">
+					<input type="file" name="FileUpload" id="FileUpload">
+			    	<button id="btn_uploadimg">上传图片</button>
+				</div>
+		    	<div class="layui-col-md4">
+		    		<button id="sub">提交</button>
+		    	</div>
+			</div>
+		</div>	
+		<!--<div class="layui-col-md8 layui-col-md-offset2">
+		    <input type="file" name="FileUpload" id="FileUpload">
+		    <a class="layui-btn layui-btn-mini" id="btn_uploadimg">上传图片</a>
+		</div>-->
+	</div>	
+</body>
+
+<script>
+	var userId;
+	$(function(){
+		var href = window.location.href;
+		userId = href.split("?")[1].split("=")[1];
+	})
+	
+	$("#btn_uploadimg").click(function () {
+        var fileObj = document.getElementById("FileUpload").files[0]; // js 获取文件对象
+        if (typeof (fileObj) == "undefined" || fileObj.size <= 0){
+            alert("请选择图片");
+            return;
+	    }
+	    var formFile = new FormData();
+	    formFile.append("action", "UploadVMKImagePath");  
+	    formFile.append("file", fileObj); //加入文件对象
+	 
+	        
+        var data = formFile;
+        $.ajax({
+        	url:"http://localhost:8080/lenrn/upload/uploading2",
+            data: data,
+            type: "Post",
+            dataType: "json",
+            cache: false,//上传文件无需缓存
+            processData: false,//用于对data参数进行序列化处理 这里必须false
+            contentType: false, //必须
+            success:function(data) {
+                alert(data);
+            },
+            error:function(data){
+            }
+        })
+        insertpacture();
+    })
+
+	function insertpacture(){
+		var Allpath = $("#FileUpload").val();
+		var path = Allpath.split("\\")[Allpath.split("\\").length-1];
+		var texts = $("#textarea").text();
+		texts = texts+"<br><img src=\"../images/"+path+"\">";
+		$("#textarea").text(texts);		
+	}
+	
+	
+	$("#sub").click(function(){
+		var exhibitionName = $("#up_title").val();
+		var exhibitionDescription = $("#up_introduction").val();
+		var exhibitionContent = $("#textarea").text();
+		var data1 = {
+			"userId":userId,
+			"exhibitionName":exhibitionName,
+			"exhibitionDescription":exhibitionDescription,
+			"exhibitionContent":exhibitionContent
+		};
+		$.ajax({
+			type:"POST",
+			contentType:"application/json",
+            url: "http://localhost:8080/lenrn/exhibition/add",
+			data:JSON.stringify(data1),
+			async:true,
+			dataType:"json",
+			success:function(data){
+				alert("上传成功！");
+			},
+            error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+		});
+	})
+</script>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>IT学习网站</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}"/>
+	<script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+	<script type="text/javascript" th:src="@{/JS/jquery-3.3.1.min.js}"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+	#head{
+		min-height: 150px;
+	}
+	#login{
+		float: right;
+	}
+	#success{
+		float: right;
+	}
+	#main_nav1{
+		text-decoration: none;
+		height: 30px;
+		line-height: 30px;
+		color: gray;
+	}
+    #main_nav1 li{
+        padding-left: 10px;
+    }
+	#main_nav1 li a{
+		color: gray;
+		line-height: 30px;
+	}
+    #nav-child1{
+        margin-top: -20px;
+    }
+	.noborder{
+		border: none;
+		background: transparent;
+		color: gray;
+		line-height: 30px;
+	}
+	.head-two{
+		height: 120px;
+	}
+	.head-two div{
+		height: 120px;
+		line-height: 120px;
+	}
+	.head-two-left h1{
+		font-size: 40px;
+	}
+	.head-two-right{
+		padding: 1px;
+	}
+	#search{
+		float: right;
+	}
+	#search input{
+		margin-top: 50px;
+	}
+	.row{
+		margin-top: 5px;
+	}
+
+	#ol li{
+		line-height: 30px;
+	}
+
+	#content font{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	#example-2 img{
+		margin-top: 10px;
+	}
+	#example-2 p{
+		line-height: 40px;
+		color: gray;
+	}
+	#card2{
+		border: 2px solid gainsboro;
+	}
+	#card2 font{
+		font-weight: bold;
+	}
+	#bottom{
+		height: 60px;
+		text-align: center;
+	}
+	#bottom p{
+		line-height: 50px;
+	}
+</style>
+</head>
+<body>
+<div class="layui-fluid" id="body">
+	<div class="layui-row" id="head">
+		<div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12 head-one">
+			<div id="login">
+				<a class="noborder" th:href="@{login}">登录</a>
+				<button class="noborder" id="enroll">注册</button>
+			</div>
+            <div id="success">
+                <i class="layui-icon layui-icon-username" style="font-size: 20px; color: gray;"></i>
+                <font id="username"></font>
+                <font>退出</font>
+            </div>
+		</div>
+		<div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12 head-two">
+			<div class="layui-col-md2 layui-col-sm4 head-two-left"><h1>彩笔小队 </h1></div>
+			<div class="layui-col-md2 layui-col-lg-offset layui-col-sm4 head-two-left"><h3>JAVA开发</h3></div>
+			<div class="layui-col-md3 layui-col-lg-offset5 layui-col-sm4 head-two-right">
+				<div class="layui-input-inline" id="search">
+                    <input id="content_search" type="search" name="keyword" autocomplete="off" class="layui-input" placeholder="search"/>
+                    <i class="layui-icon layui-icon-search" style="position: absolute;top:8px;right: 8px;" id="but_search"></i>
+                </div>
+			</div>
+		</div>
+		<div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12 layui-bg-cyan" id="navigate">
+			<ul class="layui-nav">
+			    <li class="layui-nav-item"><a href="details.html" target="c">首页</a></li>
+			    <li class="layui-nav-item">
+			    	<a href="">学习推荐</a>
+			    	<d1 class="layui-nav-child">
+		    		    <dd><a href="">慕课网</a></dd>
+  						<dd><a href="">腾讯课堂</a></dd>
+  						<dd><a href="">网易课堂</a></dd>
+  						<dd><a href="">源宝网</a></dd>
+			    	</d1>
+			    </li>
+			    <li class="layui-nav-item"><a th:href="@{/import/upload}" target="_blank" onclick="return TisLogin()">上传课程</a></li>
+			    <li class="layui-nav-item"><a>作品展览</a></li>
+			    <li class="layui-nav-item"><a>在线编程</a></li>
+			    <li class="layui-nav-item">
+			    	<a href="">关于我们</a>
+			    	<d1 class="layui-nav-child">
+		    		    <dd><a href="">软件产品</a></dd>
+  						<dd><a href="">留言</a></dd>
+  						<dd><a href="">联系我们</a></dd>
+  						<dd><a href="">关于我们</a></dd>
+			    	</d1>
+			    </li>
+			</ul>
+		</div>
+	</div>
+
+    <div id="icontent">
+        <iframe name="con" id="con" th:replace="MainContent::html"></iframe>
+    </div>
+
+    <div id="idetails">
+        <iframe th:replace="details::html"></iframe>
+    </div>
+
+	<div id="isearch">
+		<iframe th:replace="Search::html"></iframe>
+	</div>
+
+	<div class="layui-row row">
+		<div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12">
+			<div class="layui-card" id="card2">
+			    <div class="layui-card-header">
+			    	<i class="layui-icon layui-icon-link" style="font-size: 25px; color: #1E9FFF;"></i>
+			    	<font>友情链接</font>
+			    </div>
+			    <div class="layui-card-body">
+			        <ol id="ol1">
+			        	<li v-for="(item,index) in items">
+			        		{{ index+1 }}.&nbsp;{{ item.name }}:<a v-bind:href="item.href" target="_blank">{{ item.href }}</a>
+			        	</li>
+			        </ol>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="layui-row row">
+		<div class="layui-col-md12 layui-col-sm12 layui-bg-black" id="bottom">
+			<p>@2018&nbsp;&nbsp;彩笔小队出品</p>
+		</div>
+	</div>
+
+</div>
+</body>
+<script>
+	layui.use('element',function(){
+		var element = layui.element;
+	})
+
+    //定义全局变量
+    var userId = null;
+	var userName = null;
+	var userCategory = null;
+
+    $(function () {
+        $('#idetails').hide();
+        $('#isearch').hide();
+        $('#success').hide();
+
+        $.ajax({
+            type:"GET",
+            contentType:"application/json",
+            url:"/lenrn/user/isLogin",
+            dataType:"json",
+            success:function (data) {
+                userId = data.userId;
+                userName = data.userName;
+                userCategory = data.userCategory;
+                if(userName!=null){
+                    $('#username').html(userName);
+                    alterState();
+                }
+            },
+            error:function () {
+            }
+        })
+    })
+
+    //判断是否老师登录
+    function TisLogin(){
+        if(userCategory!="教师"){
+            alert("无权限！");
+            return false;
+        }
+        return true;
+    }
+
+    //改变状态栏
+    function alterState(){
+        $('#login').hide();
+        $('#success').show();
+    }
+    $('#but_search').click(function () {
+        $('#idetails').hide();
+        $('#icontent').hide();
+        $('#isearch').show();
+        se_search.getSearch($('#content_search').val());
+    })
+
+	$('#login1').click(function () {
+		$('#con').attr("th:replace","details::html");
+		alert(5478);
+    })
+
+	var ol1 = new Vue({
+		el:'#ol1',
+		data:{
+			items:[
+				{
+					"name":"慕课网",
+					"href":"https://www.imooc.com/"
+					},
+				{
+					"name":"腾讯课堂",
+					"href":"https://ke.qq.com/"
+					}
+			]
+		}
+	})
+
+
+</script>
+</html>

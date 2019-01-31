@@ -41,6 +41,7 @@ public class TestNonBlockingNIO {
 
 		// 2. 切换非阻塞模式
 		sChannel.configureBlocking(false);
+		
 
 		// 3. 分配指定大小的缓冲区
 		ByteBuffer buf = ByteBuffer.allocate(1024);
@@ -76,7 +77,7 @@ public class TestNonBlockingNIO {
 		// 4. 获取选择器
 		Selector selector = Selector.open();
 
-		// 5. 将通道注册到选择器上, 并且指定“监听接收事件”
+		// 5. 将通道注册到选择器上, 并且指定监听“接收事件”
 		ssChannel.register(selector, SelectionKey.OP_ACCEPT);
 
 		// 6. 轮询式的获取选择器上已经“准备就绪”的事件
@@ -87,9 +88,8 @@ public class TestNonBlockingNIO {
 			
 
 			while (it.hasNext()) {
-				// 8. 获取准备“就绪”的是事件
+				// 8. 获取准备就绪的事件
 				SelectionKey sk = it.next();
-
 				// 9. 判断具体是什么事件准备就绪
 				if (sk.isAcceptable()) {
 					// 10. 若“接收就绪”，获取客户端连接

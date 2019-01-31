@@ -12,7 +12,7 @@
 1.单例对象都是私有的，且为静态域；
 2.构造器须为私有的；
 3.向外部提供一个公共的接口来获取单例对象。
-4.都无法避免通过反射构造对象。
+4.均无法避免通过反射构造对象。
 5.为了保证每次反序列化得到的是同一个对象，需实现readResolve() 方法
 
 	private Object readResolve() throws ObjectStreamException {

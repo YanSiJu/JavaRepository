@@ -17,5 +17,7 @@ public class SomeThingTest {
 		String s = "2G+16G";
 		System.out.println(s.replace("G", ""));
 	}
+	
+	
 
 }

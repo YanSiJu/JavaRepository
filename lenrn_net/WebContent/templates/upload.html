@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程上传</title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    	#up_content{
+    		min-height: 600px;
+    		border: 2px solid gainsboro;
+    	}
+    	#up_card1{
+    		margin-left: 20px;
+    	}
+    	#up_card1 h1{
+    		line-height: 80px;
+    	}
+    	#up_area{
+    		margin-top: 40px;
+    	}
+    	#up_area p{
+    		line-height: 40px;
+    	}
+    	#selectSubject{
+    		width: 170px;
+    	}
+    	#selectGrade{
+    		width: 170px;
+    	}
+    	.input{
+			height: 30px;
+			width: 200px;
+			border-radius: 9px;
+			text-align: center;
+			line-height: 30px;
+		}
+		textarea{
+			margin-top: 5px;
+		    width: 80%;
+		    min-height: 300px;
+		    _height: 120px;
+		    outline: 0;
+		    padding: 10px;
+		    border: 1px solid #a0b3d6;
+		    line-height: 24px;
+		    word-wrap: break-word;
+		    overflow-x: hidden;
+		    overflow-y: auto;
+		 	border-radius: 9px;
+		}
+		select{
+			height: 30px;
+			width: 200px;
+			border-radius: 9px;
+		}
+		.FileUpload{
+			display: none;
+		}
+		.insertImg{
+			margin-left: 10px;
+			color: greenyellow;
+		}
+		.upImg{
+			color: blue;
+		}
+		#delete{
+			float: right;
+		}
+    </style>
+</head>
+<body>
+<div class="layui-row">
+	<div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12">
+		<div class="layui-col-md12 layui-col-sm12" id="up_content">
+			<form method="post" enctype="multipart/form-data" action="http://localhost:8080/lenrn/upload/uploading">
+				<div class="layui-card" id="up_card1">
+			        <div class="layui-card-header"><h1>教程上传</h1></div>
+			        <div class="layui-card-body" id="up_area">
+						<p id="up_upid" class="hidecontent">上传ID:<input type="text" id="uploaderId" name="uploaderId" value="10000"/></p>
+	                    <p>教程头像:<input type="file" name="imgfile" /></p>
+	                    <p>教程名字:<input type="text" class="input" name="resourceName" /></p>
+	                    <p>教程科目:      
+	                    	<select name="resourceSubject" id="selectSubject">
+						        <option value="JavaEE">JavaEE</option>
+						        <option value="JavaSE">JavaSE</option>
+						        <option value="PHP">PHP</option>
+						        <option value="Python编程">Python编程</option>
+					        </select> 		
+	                    </p>
+	                    <p>课程等级:
+	                    	<select name="resourceGrade" id="selectGrade">
+						        <option value="基础知识">基础知识</option>
+						        <option value="进阶知识">进阶知识</option>
+						        <option value="实例教程">实例教程</option>
+						        <option value="拓展知识">拓展知识</option>
+					        </select> 	                    
+	                    </p>
+	                    <p>课程资源:<input type="file" name="file" /></p>
+                        <p class="hidecontent">content:<input type="text" name="content" id="up_allcontent" /></p>
+    			        <div class="layui-col-md12 layui-col-sm12 forec" v-for="(item,index) in list">
+				        	<p>章节标题{{ index+1 }}:<input type="text"  class="input up_titel" name="smalltitle" v-bind:placeholder="item.titel" /></p>
+				        	<p>章节内容{{ index+1 }}:</p>
+        					<div class="layui-col-md9">
+        						<a @click="FileupLoad(index)">插入图片</a>
+								<input type="file" name="FileUpload" class="FileUpload" v-model="item.message">
+						    	{{item.message}}
+						    	<a @click="uploadimg(index)" class="upImg">上传图片</a>
+						    	<a id="delete" @click="deleteOne(index)">关闭</a>
+							</div>
+				        	<textarea cols="60" rows="9" v-bind:placeholder="item.content" class="up_content"></textarea><br />
+    			        </div>
+    			        <button type="button" @click="addContent()">增加章节</button>
+				        <button type="submit" id="abc">提交</button>
+			        </div>
+			    </div>
+			</form>
+		</div>	
+	</div>
+</div>
+</body>
+<script>
+    $(function () {
+        $('.hidecontent').hide();
+        var href = window.location.href;
+        var userId = href.split("?")[1].split("=")[1];
+        $("#uploaderId").val(userId);
+    })
+
+	var listdata={
+		titel:"章节题目",
+		content:"章节内容",
+		message: ''
+	}
+	var up_el1 = new Vue({
+		el:"#up_area",
+		data:{
+//			message: '',
+			list:[
+				{
+					titel:"章节题目",
+					content:"章节内容",
+					message: ''
+				}
+			]
+		},
+		methods:{
+			addContent:function(){
+				var length = up_el1.list.length;
+				up_el1.list.splice(length,0,listdata);
+			},
+		    uploadimg:function(index) {
+		        var fileObj = document.getElementsByClassName("FileUpload")[index].files[0]; // js 获取文件对象
+		        if (typeof (fileObj) == "undefined" || fileObj.size <= 0){
+		            alert("请选择图片");
+		            return;
+		        }
+			    var formFile = new FormData();
+			    formFile.append("action", "UploadVMKImagePath");  
+			    formFile.append("file", fileObj); //加入文件对象
+			 
+			        
+		        var data = formFile;
+		        $.ajax({
+			      	url:"http://localhost:8080/lenrn/upload/uploading2",
+			            data: data,
+			            type: "Post",
+			            dataType: "json",
+			            cache: false,//上传文件无需缓存
+			            processData: false,//用于对data参数进行序列化处理 这里必须false
+			            contentType: false, //必须
+			            success:function(data) {
+			                alert(data);
+			            },
+			            error:function(data){
+			            }
+		        })
+		        up_el1.insertpacture(index);
+		   },
+		   FileupLoad:function(index){
+		   		$(".FileUpload")[index].click();
+		   },
+		   insertpacture:function(index){
+				var Allpath = document.getElementsByClassName("FileUpload")[index].value;
+				var path = Allpath.split("\\")[Allpath.split("\\").length-1];
+				var texts = document.getElementsByClassName("up_content")[index].value;
+				texts = texts+"<br><img src='../images/"+path+"'><br>";
+				document.getElementsByClassName("up_content")[index].value = texts;	
+			},
+			deleteOne:function(index){
+				if(up_el1.list.length==1){
+					alert("再删就没有啦！");
+				}else{
+					up_el1.list.splice(index,1);
+				}
+			}
+		}
+	})
+
+    //定义全局变量
+    var allmessage = "";
+
+    $('#abc').click(function () {
+        var title = $('.up_titel');
+        var content = $('.up_content');
+        for(var i=0;i<title.length;i++){
+            if(title[i].value!=""){
+                allmessage = allmessage + title[i].value+":"+content[i].value;
+            }
+            if(i!=title.length-1){
+                allmessage = allmessage + ",";
+            }
+        }
+        $('#up_allcontent').val(allmessage);
+    })
+    
+    
+ 
+</script>
+</html>

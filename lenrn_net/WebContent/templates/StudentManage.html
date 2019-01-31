@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>学生管理</title>
+<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+<script type="text/javascript" src="../layui/layui.js"></script>
+<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+	#cheer{
+		height: 40px;
+		line-height: 40px;
+		border: 1px solid gainsboro;
+	}
+	#Ttable{
+		width: 100%;
+	}
+	#Ttable tr{
+		height: 40px;
+	}
+	#Ttable tr td{
+		padding: 5px;
+		border: 1px solid gainsboro;
+		text-align: center;
+		width: 10%;
+	}
+	#TList{
+		overflow:scroll;
+		overflow-x:hidden
+	}
+	#delete,#alter{
+		border: 0px;
+		background: transparent;
+		color: gray;
+	}
+	#delete:hover,#alter:hover{
+		color: blue;
+	}
+	.input1{
+		height: 30px;
+		border: 0px;
+		text-align: center;
+		background: transparent;
+	}
+</style>
+</head>
+<body>
+	<div class="layui-col-md12" id="TList">
+		<table id="Ttable">
+			<tr>
+				<th colspan="2" align="left">
+					<i class="layui-icon layui-icon-template" style="font-size: 15px; color: gray;"></i>
+					教师列表
+				</th>
+			</tr>
+			<tr>
+				<th>教师ID</th>
+				<th>教师名字</th>
+				<th>教师性别</th>
+				<th>联系方式</th>
+				<th>教师描述</th>
+				<th>密码</th>
+				<th>操作</th>
+			</tr>
+			<tr v-for="(item,index) of list">
+				<td align="center"><font>{{item.userId}}</font></td>
+				<td><input class="input1" type="text" v-bind:value="item.userName"/></td>
+				<td><input class="input1" type="text" v-bind:value="item.userSex" /></td>
+				<td><input class="input1" type="text" v-bind:value="item.userTel" /></td>
+				<td><input class="input1" type="text" v-bind:value="item.userDescription"  /></td>
+				<td><input class="input1" type="text" v-bind:value="item.userPassword" /></td>
+				<td>
+					<button id="alter" @click="Alterlist(index);">更改</button>
+					<button id="delete" @click="deleteUser(index)">删除</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>	
+<script>
+	$(function(){
+		Tlist.getTList();
+	})
+	
+	 var Tlist = new Vue({
+	 	el:"#Ttable",
+	 	data:{
+	 		list:[
+		 		{
+		 			"userId":0,
+		 			"userName":"",
+		 			"userSex":"",
+		 			"userTel":"",
+		 			"userDescription":"",
+		 			"userPassword":""
+		 		}
+	 		]
+	 	},
+	 	methods:{
+	 		getTList:function(){
+	 			$.ajax({
+	 				type:"GET",
+	 				contentType:"application/json",
+	 				url:"http://localhost:8080/lenrn/user/getAllStudent",
+	 				dataType:"json",
+	 				success:function(data){
+                        if(data.length==0){
+                            alert("暂时没有教师！");
+                        }
+                        Tlist.list.splice(1);
+                        Tlist.$set(Tlist.list,0,data[0]);
+                        for(var i=1;i<data.length;i++){
+                            Tlist.list.splice(i,0,data[i]);
+                        }
+	 				},
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+	 			})
+	 		},
+	 		Alterlist:function(index){
+	 			var start = index*5;
+	 			var end = (index+1)*5;
+	 			
+	 			var _self = this;
+	 			var userId = _self.list[index].userId;
+	 			var userName = $('.input1')[start].value;
+	 			var userSex = $('.input1')[start+1].value;
+	 			var userTel = $('.input1')[start+2].value;
+	 			var userDescription = $('.input1')[start+3].value;
+	 			var userPassword = $('.input1')[start+4].value;
+	 			var data1 = {
+	 				"userId":userId,
+	 				"userName":userName,
+	 				"userSex":userSex,
+	 				"userTel":userTel,
+	 				"userDescription":userDescription,
+	 				"userPassword":userPassword,
+	 				"userCategory":"学生"
+	 			};
+	 			$.ajax({
+	 				type:"POST",
+	 				contentType:"application/json",
+	 				url:"Http://localhost:8080/lenrn/user/updata",
+	 				data:JSON.stringify(data1),
+	 				async:true,
+	 				dataType:"json",
+	 				success:function(data){
+	 					alert("更改成功！");
+	 				},
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+	 			});
+	 		},
+	 		deleteUser:function(index){
+	 			var _self = this;
+	 			var userId = _self.list[index].userId;
+	 			$.ajax({
+	 				type:"GET",
+	 				url:"Http://localhost:8080/lenrn/user/delete?userId="+userId,
+	 				async:true,
+	 				dataType:"json",
+	 				success:function(data){
+	 					alert("删除成功！");
+	 					Tlist.list.splice(index,1);
+	 				},
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("删除成功！");
+                        Tlist.list.splice(index,1);
+                    }
+	 			});
+	 		}
+	 	}
+	 })
+	
+</script>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>details</title>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #brow{
+            margin-top: 5px;
+        }
+    	#de_content{
+    		height: 640px;
+    	}
+    	#de_catelog{
+    		height: 620px;
+    		margin-top: 5px;
+    		border: 2px solid gold;
+    		width: 24%;
+    		overflow: auto;
+    	}
+    	#layui-card1{
+    		height: 560px;
+    	}
+    	#de_maincontent{
+    		height: 620px;
+    		margin-top: 5px;
+    		border: 2px solid gray;
+    		float: right;
+    		overflow: scroll;
+    	}
+    	#de_name{
+    		font-weight: bold;
+    	}
+    	#de_contenttitle h1{
+    		line-height: 80px;
+    		font-weight: bold;
+    		margin-left: 10px;
+    	}
+    	#de_contenttitle p{
+    		margin-left: 10px;
+    		color: gray;
+    	}
+		#de_contenttitle p font{
+			padding-right: 20px;
+		}
+		#de_corecontent{
+			margin-top: 20px;
+			margin-left: 10px;
+			width: 100%;
+		}
+		#de_ol1{
+			margin-left: 15px;
+			font-weight: bold;
+		}
+		.key_button{
+			background: transparent;
+			border: none;
+		}
+		#resourceload{
+			height: 40px;
+			line-height: 40px;
+			padding-left: 10px ;
+		}
+		#resourcelink{
+			border: 0px;
+			background: transparent;
+			color: blue;
+		}
+		.gg{
+			text-indent: 20px;
+			font-size: 20px;
+			font-family:"楷体";
+		}
+		.hh{
+			min-height: 400px;
+			width: 100%;
+			text-indent: 20px;
+			font-size: 20px;
+			font-family:"楷体";
+		}
+		img{
+			height: 400px;
+			width: 400px;
+			margin-left: 300px;
+			overflow: scroll;
+		}
+		#collect{
+			background: transparent;
+			border: 0px;
+			line-height: 30px;
+		}
+    </style>
+</head>
+<body>
+	<div class="layui-row">
+	    <div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12" id="brow">
+	    	<p>当前位置：<a href="MainContent.html">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;<font id="de_title">html</font></p>
+	    </div>
+		<div class="layui-col-md8 layui-col-sm8 layui-col-md-offset2" id="de_content">
+		    <div class="layui-col-md3 layui-col-sm3" id="de_catelog">
+		    	<div class="layui-card" id="layui-card1">
+			        <div class="layui-card-header">
+			        	<i class="layui-icon layui-icon-read" style="font-size: 30px; color: #1E9FFF;"></i> 
+			        	<font class="de_name">HTML基础知识</font>
+			        </div>
+			        <div class="layui-card-body">
+	                    <ol class="de_ol1" id="ol1">
+	                    	<li v-for="(item,index) in list" @click="getValues(index)">
+	                    		{{index+1}}&nbsp;&nbsp;
+	                    		<input type="text" class="key_button" v-bind:value="item.keys" disabled="true"/>
+	                    	</li>                    	
+	                    </ol>
+			        </div>
+			    </div>    
+		    	<div id="resourceload">
+		    		资源链接：<button id="resourcelink">上传</button>
+		    	</div>
+		    </div>
+		    <div class="layui-col-md9 layui-col-sm9" id="de_maincontent">
+		    	<div class="layui-col-md12 layui-col-sm12" id="de_contenttitle">
+		    		<h1 class="de_name">HTML学习资料</h1>
+		    		<p>
+		    			<font>作者编号： <label id="uploadId">10001</label></font>
+		    			<font>下载量：<label id="visitorvolume">1257</label></font>
+		    			<font>创建时间：<label id="createtime"> 2017-11-22 15:41:40</label></font>
+		    			<button id="collect">
+		    				收藏
+		    				<i id="rate" class="layui-icon layui-icon-rate" style="font-size: 20px; color: #1E9FFF;"></i>
+		    				<i id="rate-solid" class="layui-icon layui-icon-rate-solid" style="font-size: 20px; color: #1E9FFF;"></i>
+		    			</button>
+		    		</p>
+		    	</div>
+		    	<div class="layui-col-md12 layui-col-sm12" id="de_corecontent">
+		    		欢迎!
+		    	</div>
+		    </div>	
+		</div>
+	</div>	
+</body>
+<script type="text/javascript">
+	
+	var resourceAddress = "null";
+	var Id = 0; 
+	var Name = "";
+	var userId = 0;
+	
+	$(function(){
+		$(".li2").hide();
+		$("#rate-solid").hide();
+		var href = window.location.href;
+		hreftext = decodeURI(href.split("?")[1]);
+		Id = hreftext.split("&")[0].split("=")[1];
+		Name = hreftext.split("&")[1].split("=")[1];
+		var Createtime = hreftext.split("&")[2].split("=")[1];
+		var Downloads = hreftext.split("&")[3].split("=")[1];
+		var uploaderId = hreftext.split("&")[4].split("=")[1];
+		resourceAddress = hreftext.split("&")[5].split("=")[1];
+        userId = $('#userId',window.parent.document).val();
+        if(userId==uploaderId){
+        	$('.li1').hide();
+        	$('.li2').show();
+        }
+        de_ol1.setUIText(Id,Name,Createtime,Downloads,uploaderId);  
+        
+        
+        if(resourceAddress=="null"){
+        	$("#resourcelink").text("上传");
+        }else{
+        	$("#resourcelink").text("下载");        	
+        }
+        
+        $.ajax({
+        	type:"GET",
+        	url:"http://localhost:8080/lenrn/collect/check?resourceId="+Id+"&userId="+userId,
+        	success:function(data){
+        		if(null==data.userId){
+        		}else{
+	    			$("#rate").hide();
+    				$("#rate-solid").show();
+        		}
+        	},
+    		error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        })
+        
+	})
+
+    function findContent(resourceId) {
+    	resourceId = parseInt(resourceId);
+        $.ajax({
+            type:"GET",
+            contentType:"application/json",
+            url: "http://localhost:8080/lenrn/details/getDetails?resourceId="+resourceId,
+            dataType:"json",
+            success:function(data){
+				de_ol1.list.splice(0);
+			　　  for(var key in data){
+			　　	    de_ol1.setValue(key,data[key]);
+			    }
+			
+//              var a1 = JSON.stringify(data);
+//              content = a1.substring(1,a1.length-1);
+//              var contentlist = content.split(",");
+//              de_ol1.setValues(contentlist);
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("数据格式错误！");
+            }
+        })
+    }
+	
+	var de_ol1 = new Vue({
+		el:'.de_ol1',
+		data:{
+			list:[
+				{
+					keys:"",
+					values:""
+				}
+			]
+		},
+		methods:{
+			setValue:function(keys,content){
+				var listlength = de_ol1.list.length;
+				var data2 = {
+					"keys":keys,
+					"values":content
+				};
+				de_ol1.list.splice(listlength,0,data2);
+			},
+			getValues:function(i){
+			    var _self = this;
+				$("#de_corecontent").text("");
+				$(".gg").hide();
+				$("#de_corecontent").after('<div class="gg" contenteditable="true">'+_self.list[i].values+'</div>');
+//				$("#de_corecontent").after('<textarea class="hh">'+'<div class="gg">'+_self.list[i].values+'</div>'+'</textarea>');
+				
+			},
+			setUIText:function (Id,Name,Createtime,Downloads,uploaderId) {
+                findContent(Id);
+                $('.de_name').text(Name);
+                $('#de_title').text(Name);
+                $('#uploadId').text(uploaderId);
+                $('#visitorvolume').text(Downloads);
+                $('#createtime').text(Createtime);
+            }
+		}
+	})
+
+    $('#de_return').click(function () {
+        $('#icontent').show();
+        $('#idetails').hide();
+    })
+    
+    $('#resourcelink').click(function(){
+    	if(resourceAddress=="null"){
+    		alert("你没有权限!");
+    	}else{
+    		window.open("http://localhost:8080/lenrn/download/download?resourceAddress="+resourceAddress);
+    	}
+    })
+    
+    $("#rate").click(function(){
+    	var data1 = {
+    		"collectName":Name,
+    		"resourceId":Id,
+    		"userId":userId
+    	};
+    	$.ajax({
+    		type:"POST",
+    		contentType:"application/json",
+    		url:"http://localhost:8080/lenrn/collect/add",
+    		data:JSON.stringify(data1),
+    		dataType:"json",
+    		success:function(data){
+    			$("#rate").hide();
+    			$("#rate-solid").show();
+    		},
+    		error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+    	})
+    })
+    
+    $("#rate-solid").click(function(){
+    	$.ajax({
+    		type:"GET",
+    		url:"http://localhost:8080/lenrn/collect/delete",
+    		data:{
+    			"resourceId":Id,
+    			"userId":userId
+    		},
+    		success:function(){
+    			$("#rate").show();
+    			$("#rate-solid").hide();
+    		},
+    		error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+    	})
+    })
+</script>
+</html>

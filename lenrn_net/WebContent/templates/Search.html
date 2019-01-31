@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+	    #se_brow{
+            margin-top: 5px;
+        }
+        #se_content{
+        	min-height: 600px;
+        	border: 2px solid gainsboro;
+        }
+        #se_content h3{
+        	line-height: 36px;
+        	font-weight: bold;
+			margin-left: 16px;
+			font-size: 14px;
+        }
+		#se_card{
+			border: 1px solid gainsboro;
+		}
+        .id_time{
+        	float: right;
+        }
+	</style>
+</head>
+<body>
+	<div class="layui-row">
+	    <div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12" id="se_brow">
+	    	<p>当前位置：<a id="se_return">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;<font id="de_title">搜索</font></p>
+	    </div>
+	    <div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12" id="se_content">
+	    	<h3>搜索结果</h3>
+	    	<div class="layui-card" v-for="(item,index) in list" id="se_card" @click="searchSwitch(index)">
+				<div class="layui-card-header">
+					<font class="se_name">{{ item.resourceName }}</font>
+					<font class="id_time">{{ item.resourceCreatetime }}</font>
+				</div>
+				<div class="layui-card-body">
+                    {{ content }}
+				</div>
+			</div>
+	    </div>
+	</div>    
+</body>
+<script>
+	
+	$(function(){
+		var href = window.location.href;
+		var searchText = href.split("?")[1].split("=")[1];
+		
+		//调用后台返回搜索数据
+		se_search.getSearch(searchText);
+	})
+
+	var se_search = new Vue({
+		el:"#se_content",
+		data:{
+		    content:"好好学习，天天向上",
+			list:[
+				{
+                    "resourceId": 0,
+                    "resourceName": "",
+                    "resourceAddress":"",
+                    "resourceCreatetime": "",
+                    "resourceDownloads": 0,
+                    "uploaderId": 0,
+                    "resourceImg": ""
+				}
+			]
+		},
+		methods:{
+			getSearch:function(resourceName){
+				$.ajax({
+					type:"get",
+					contentType:"application/json",
+					url:"http://localhost:8080/lenrn/resource/getByResourceName?resourceName="+resourceName,
+					dataType:"json",
+					success:function(data){
+                        se_search.list.splice(1);
+                        se_search.$set(se_search.list,0,data[0]);
+                        for(var i=1;i<data.length;i++){
+                            se_search.list.splice(i,0,data[i]);
+                        }
+					}
+				});
+			},
+            searchSwitch:function (index) {
+                var _self = this;
+                var Id = _self.list[index].resourceId;
+                var Name = _self.list[index].resourceName;
+                var Createtime = _self.list[index].resourceCreatetime;
+                var Downloads = _self.list[index].resourceDownloads;
+                var uploaderId = _self.list[index].uploaderId;
+                var resourceAddress = _self.list[index].resourceAddress;
+                var hr = "details.html?Id="+Id+"&Name="+Name+"&Createtime="+Createtime+"&Downloads="+Downloads+
+                "&uploaderId="+uploaderId+"&resourceAddress="+resourceAddress;
+            	hr = encodeURI(hr);
+            	window.location.href = hr;
+            }
+		}
+	})
+
+    $('#se_return').click(function () {
+        $('#icontent').show();
+        $('#isearch').hide();
+    })
+</script>
+</html>

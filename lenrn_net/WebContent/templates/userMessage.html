@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>用户信息</title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+		#set_content{
+			width: 83%;
+			float: right;
+			margin-top: 8px;
+		}
+		#cheer{
+			height: 40px;
+			line-height: 40px;
+			border: 1px solid gainsboro;
+		}
+		#usertable{
+			width: 100%;
+		}
+		#usertable tr{
+			height: 40px;
+		}
+		#usertable tr td{
+			padding: 5px;
+			border: 1px solid gainsboro;
+		}
+		#altermessage{
+			height: 30px;
+		}
+		.input1{
+			height: 30px;
+			width: 400px;
+			border: 0px;
+		}
+    </style>
+</head>
+<body>
+	
+	<div class="layui-col-md12" id="userMessage">
+		<table id="usertable">
+			<tr>
+				<th>
+					<i class="layui-icon layui-icon-username" style="font-size: 15px; color: gray;"></i>
+					个人信息
+				</th>
+			</tr>
+			<tr>
+				<td align="right">用户Id</td>
+				<td><font id="userId">10001</td>
+			</tr>
+			<tr>
+				<td width="100px" align="right">真实姓名</td>
+				<td><input class="input1" type="text" id="name" value="黄浩"/></td>
+			</tr>
+			<tr>
+				<td align="right">用户邮箱</td>
+				<td><input class="input1" type="text" id="email" value="Henry1778242@Foxmail.com"/></td>
+			</tr>
+			<tr>
+				<td align="right">用户性别</td>
+				<td><input class="input1" type="text" id="sex" value="男"/></td>
+			</tr>
+			<tr>
+				<td align="right">用户身份</td>
+				<td><input class="input1" type="text" id="identity" value="学生" disabled="disabled"/></td>
+			</tr>
+			<tr>
+				<td align="right">邮政编码</td>
+				<td><input class="input1" type="text" id="postal" value="421500"/></td>
+			</tr>
+			<tr>
+				<td align="right">手机</td>
+				<td><input class="input1" type="text" id="tellphone" value="18867358332"/></td>
+			</tr>
+			<tr>
+				<td align="right">用户描述</td>
+				<td><input class="input1" type="text" id="description" value="帅气" /></td>
+			</tr>
+			<tr>
+				<td align="right">密码</td>
+				<td><input class="input1" type="password" id="password" value="123456" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button id="altermessage">修改信息</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+		
+</body>
+<script>
+	$(function(){
+		userName = $("#useName",window.parent.document).val();
+		getUserByUserName(userName);
+	})
+	
+	function getUserByUserName(userName){
+		$.ajax({
+			ContentType:"application/json",
+			type:"GET",
+			url:"http://localhost:8080/lenrn/user/getUserByName?userName="+userName,
+			data:"json",
+			success:function(data){
+				$('#userId').html(data.userId);
+				$('#name').val(data.userName);
+				$('#tellphone').val(data.userTel);
+				$('#sex').val(data.userSex);
+				$('#identity').val(data.userCategory);
+				$('#description').val(data.userDescription);
+				$('#password').val(data.userPassword);
+			},
+            error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+			
+		});
+	}
+	
+	$('#altermessage').click(function(){
+		var userName = $('#name').val();
+		var userPassword = $('#password').val();
+		var userId = $('#userId').html();
+		var sex = $('#sex').val();
+		var identity = $('#identity').val();
+		var description = $('#description').val();
+		var tel = $('#tellphone').val();
+		var data1 = {
+			"userName":userName,
+			"userId":userId,
+			"userPassword":userPassword,
+			"userSex":sex,
+			"userTel":tel,
+			"userCategory":identity,
+			"userDescription":description
+		};
+		$.ajax({
+			type:"post",
+			contentType:"application/json",
+			url:"http://localhost:8080/lenrn/user/updata",
+			async:true,
+			data:JSON.stringify(data1),
+			success:function(data){
+				userName = data.userName;
+				alert("更改成功！!");
+			},
+			error:function(e){
+				alert("error");
+			}
+		});
+	})
+</script>
+</html>

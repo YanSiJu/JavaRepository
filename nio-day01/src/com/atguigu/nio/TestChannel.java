@@ -191,6 +191,7 @@ public class TestChannel {
 			fis = new FileInputStream("d:/1.mkv");
 			fos = new FileOutputStream("d:/2.mkv");
 
+			
 			inChannel = fis.getChannel();
 			outChannel = fos.getChannel();
 

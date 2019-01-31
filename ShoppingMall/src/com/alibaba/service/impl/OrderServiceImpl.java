@@ -39,7 +39,10 @@ public class OrderServiceImpl implements OrderService {
 		String id = "" + userId;
 		String str = "" + time.substring(time.length() - 4, time.length()) + id.substring(id.length() - 2, id.length());
 		int orderId = Integer.valueOf(str);
-		Order o = new Order(orderId, dateTime, address, name, number * price, user.getId());
+		Order o = null;
+		if (user != null) {
+			o = new Order(orderId, dateTime, address, name, number * price, user.getId());
+		}
 		GoodsInOrder goods = new GoodsInOrder(orderId, goodsId, number, number * price, capacity, front, rear, type);
 		mapper.insertOrder(o);
 		mapper.insertGoods(goods);

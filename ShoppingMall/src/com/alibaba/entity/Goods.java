@@ -1,6 +1,13 @@
 package com.alibaba.entity;
 
-public class Goods {
+import java.io.Serializable;
+
+public class Goods implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public Goods(int id, String name, String batteryCapacity, String frontFacingCamera, String rearCamera) {
 		super();

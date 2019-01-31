@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<!-- 绑定接口,com.alibaba.mapper.UserMapper即为绑定的接口的全类名 -->
+<mapper namespace="cn.csu.mapper.UserMapper">
+
+	<!-- 绑定接口的方法，id即为方法名 -->
+	<!-- User selectUserByName(String userName) -->
+	<select id="selectUserByName" resultType="cn.csu.entity.User">
+		select * from user
+		where userName = #{userName}
+	</select>
+
+
+	<!-- public void insertUser(User user) -->
+	<insert id="insertUser">
+		INSERT INTO `user`(tel,userName,password,name)
+		VALUES
+		(#{tel},#{userName}, #{password}, #{name})
+	</insert>
+
+</mapper>

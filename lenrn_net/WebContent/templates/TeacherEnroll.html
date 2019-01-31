@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>教师注册</title>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+	#AddTable{
+		width: 100%;
+	}
+	#AddTable tr{
+		height: 40px;
+	}
+	#AddTable tr td{
+		padding: 5px;
+		border: 1px solid gainsboro;
+	}
+	.input2{
+		height: 30px;
+		border: 0px;
+		width: 200px;
+		text-align: center;
+		background: transparent;
+	}
+	#addTeacher{
+		width: 60px;
+		background: gainsboro;
+		border: 1px solid ghostwhite;
+		height: 30px;
+	}
+</style>
+</head>
+<body>
+	<div class="layui-col-md12">
+		<table id="AddTable" border="1px" width="100%">
+			<tr>
+				<td width="100px">教师姓名</td>
+				<td><input class="input2" type="text" id="name"/></td>
+			</tr>
+			<tr>
+				<td>教师性别</td>
+				<td><input class="input2" type="text" id="sex"/></td>
+			</tr>
+			<tr>
+				<td>联系方式</td>
+				<td><input class="input2" type="text" id="tel"/></td>
+			</tr>
+			<tr>
+				<td>用户描述</td>
+				<td><input class="input2" type="text" id="description"/></td>
+			</tr>
+			<tr>
+				<td>登录密码</td>
+				<td><input class="input2" type="text" id="password"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><button id="addTeacher">添加</button></td>
+			</tr>
+		</table>
+	</div>
+</body>
+<script>
+	$('#addTeacher').click(function(){
+		var userName = $('#name').val();
+		var userSex = $('#sex').val();
+		var userTel = $('#tel').val();
+		var userDescription = $('#description ').val();
+		var userPassword = $('#password').val();
+		var data1 = {
+			"userName":userName,
+			"userSex":userSex,
+			"userTel":userTel,
+			"userCategory":"教师",
+			"userDescription":userDescription,
+			"userPassword":userPassword
+		};
+		$.ajax({
+			type:"POST",
+			contentType:"application/json",
+			url:"Http://localhost:8080/lenrn/user/register",
+			data:JSON.stringify(data1),
+			async:true,
+			dataType:"json",
+			success:function(data){
+				alert("添加成功！");
+				window.location.href = "TeacherManage.html";
+			},
+            error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+		});
+	})
+</script>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生作品展览</title>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #ol{
+            list-style-type: circle;
+        }
+        #ol li{
+            line-height: 30px;
+        }
+        #content{
+            min-height: 400px;
+            border: 2px solid gainsboro;
+        }
+        #content font{
+            font-size: 15px;
+            font-weight: bold;
+        }
+        #selects{
+            height: 30px;
+            color: gray;
+        }
+        #example-2{
+            height: 170px;
+            text-align: center;
+        }
+        #example-2 img{
+            margin-top: 10px;
+        }
+        #example-2 p{
+            line-height: 40px;
+            color: gray;
+        }
+        .contentImg{
+            height: 120px;
+            width: 120px;
+        }
+        #card2 font{
+            font-weight: bold;
+        }
+        #bottom p{
+            line-height: 50px;
+        }
+        #category{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="layui-row row">
+        <div class="layui-col-md8 layui-col-md-offset2 layui-col-sm12" id="content">
+            <div class="layui-col-md12 layui-col-sm12">
+                <div class="layui-col-md6 layui-col-sm6">
+                    <i class="layui-icon layui-icon-tree" style="font-size: 30px; color: #1E9FFF;"></i>
+                    <font>学生作品展示</font>
+                </div>
+                <hr class="layui-bg-gray">
+            </div>
+            <div class="layui-col-md12 layui-col-sm12" id="example-2">
+                <div class="layui-col-md2 layui-col-sm2" v-for="(item,index) of list" @click="swiitchover(index)">
+                    <img class="contentImg" v-bind:src="item.resourceImg" />
+                    <p>{{ item.resourceName }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+	function iframeHeight(){
+		alert(25);
+     // obj 这里是要获取父页面的iframe对象
+         var obj = parent.document.getElementById('test');
+     // 调整父页面的高度为此页面的高度
+         obj.height = this.document.body.scrollHeight;
+    }
+	
+    layui.use('element',function(){
+        var element = layui.element;
+    })
+
+
+    layui.use('carousel',function(){
+        var carousel = layui.carousel;
+        //常规轮播
+        carousel.render({
+            elem: '#test1'
+            ,width:'820px'
+            ,height: '240px'
+            ,interval: 3000
+        });
+    })
+
+    var todo1 = new Vue({
+        el:"#todo1",
+        data:{
+            todos:[
+                {text:'◆招聘：熟悉智能机器人控制器编程或嵌入式系统'},
+                {text:'◆小白到大神全系列在线教程'},
+                {text:'◆软件开发就找源宝网络'},
+                {text:'◆WiFi云（wifiyun.org）免费了！'}
+            ]
+        }
+    })
+
+    //初始化grade
+    var grade = "all";
+
+    //页面加载初始化
+    $(function () {
+        example2.create();
+    })
+
+    //触发级别选项
+    $('#selects').change(function () {
+        grade = $('#selects option:selected').val();
+        example2.create();
+    })
+
+
+    //绑定Vue
+    var example2 = new Vue({
+        el: '#example-2',
+        data:{
+            code:1,
+            message:"success",
+            grade:"all",
+            list:[
+                {
+                    "resourceId": 0,
+                    "resourceName": "",
+                    "resourceAddress":"",
+                    "resourceCreatetime": "",
+                    "resourceDownloads": 0,
+                    "uploaderId": 0,
+                    "resourceImg": ""
+                }
+            ]
+        },
+        methods:{
+            create:function(){
+                var _self = this;
+                $.ajax({
+                    type:"GET",
+                    contentType:"application/json",
+                    url:"http://localhost:8080/lenrn/resource/getBySubjectAndGrade?subject=JavaEE&grade="+grade,
+                    dataType:'json',
+                    success:function(data){
+                        if(data.list.length==0){
+                            alert("暂时没有该类教程！");
+                        }
+                        example2.list.splice(1);
+                        example2.$set(example2.list,0,data.list[0]);
+                        for(var i=1;i<data.list.length;i++){
+                            example2.list.splice(i,0,data.list[i]);
+                        }
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+                })
+            },
+            swiitchover:function (index) {
+                var _self = this;
+                var Id = _self.list[index].resourceId;
+                var Name = _self.list[index].resourceName;
+                var Createtime = _self.list[index].resourceCreatetime;
+                var Downloads = _self.list[index].resourceDownloads;
+                var uploaderId = _self.list[index].uploaderId;
+                var resourceAddress = _self.list[index].resourceAddress;
+                var hr = "details.html?Id="+Id+"&Name="+Name+"&Createtime="+Createtime+"&Downloads="+Downloads
+                		+"&uploaderId="+uploaderId+"&resourceAddress="+resourceAddress;
+            	hr = encodeURI(hr);
+            	window.location.href = hr;
+            }
+        }
+    })
+</script>
+</html>

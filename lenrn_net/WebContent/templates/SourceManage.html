@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>学生管理</title>
+<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+<script type="text/javascript" src="../layui/layui.js"></script>
+<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+	#cheer{
+		height: 40px;
+		line-height: 40px;
+		border: 1px solid gainsboro;
+	}
+	#Ttable{
+		width: 100%;
+	}
+	#Ttable tr{
+		height: 40px;
+	}
+	#Ttable tr td{
+		padding: 5px;
+		border: 1px solid gainsboro;
+		text-align: center;
+		width: 10%;
+	}
+	#TList{
+		overflow:scroll;
+		overflow-x:hidden
+	}
+	#delete,#alter{
+		border: 0px;
+		background: transparent;
+		color: gray;
+	}
+	#delete:hover,#alter:hover{
+		color: blue;
+	}
+	.input1{
+		height: 30px;
+		border: 0px;
+		text-align: center;
+		background: transparent;
+	}
+</style>
+</head>
+<body>
+	<div class="layui-col-md12" id="TList">
+		<table id="Ttable">
+			<tr>
+				<th colspan="2" align="left">
+					<i class="layui-icon layui-icon-template" style="font-size: 15px; color: gray;"></i>
+					课程列表
+				</th>
+			</tr>
+			<tr>
+				<th>课程ID</th>
+				<th>课程名字</th>
+				<th>创造时间</th>
+				<th>下载量</th>
+				<th>上传者ID</th>
+				<th>操作</th>
+			</tr>
+			<tr v-for="(item,index) of list">
+				<td><a @click="switchover(index)">{{item.resourceId}}</a></td>
+				<td><input class="input1" type="text" v-bind:value="item.resourceName" /></td>
+				<td><input class="input1" type="text" v-bind:value="item.resourceCreatetime" /></td>
+				<td><input class="input1" type="text" v-bind:value="item.resourceDownloads"  /></td>
+				<td><input class="input1" type="text" v-bind:value="item.uploaderId" /></td>
+				<td>
+					<button id="alter" @click="Alterlist(index);">更改</button>
+					<button id="delete" @click="">删除</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>	
+<script>
+	$(function(){
+		Tlist.create();
+	})
+	
+	
+	var Tlist = new Vue({
+        el: '#Ttable',
+        data:{
+            code:1,
+            message:"success",
+            grade:"all",
+            list:[
+                {
+                    "resourceId": 0,
+                    "resourceName": "",
+                    "resourceAddress":"",
+                    "resourceCategory":"",
+                    "resourceSubject":"",
+                    "resourceGrade":"",
+                    "resourceCreatetime": "",
+                    "resourceDownloads": 0,
+                    "uploaderId": 0,
+                    "resourceImg": ""
+                }
+            ]
+        },
+        methods:{
+            create:function(){
+                var _self = this;
+                $.ajax({
+                    type:"GET",
+                    contentType:"application/json",
+                    url:"http://localhost:8080/lenrn/resource/getallResource",
+                    dataType:'json',
+                    success:function(data){
+                        if(data.length==0){
+                            alert("暂时没有该类教程！");
+                        }
+                        Tlist.list.splice(1);
+                        Tlist.$set(Tlist.list,0,data[0]);
+                        for(var i=1;i<data.length;i++){
+                            Tlist.list.splice(i,0,data[i]);
+                        }
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+                })
+            },
+            switchover:function (index) {
+                var _self = this;
+                var Id = _self.list[index].resourceId;
+                var Name = _self.list[index].resourceName;
+                var Createtime = _self.list[index].resourceCreatetime;
+                var Downloads = _self.list[index].resourceDownloads;
+                var uploaderId = _self.list[index].uploaderId;
+                var resourceAddress = _self.list[index].resourceAddress;
+                
+                var hr = "details.html?Id="+Id+"&Name="+Name+"&Createtime="+Createtime+"&Downloads="+Downloads
+                		+"&uploaderId="+uploaderId+"&resourceAddress="+resourceAddress;
+            	hr = encodeURI(hr);
+            	window.location.href = hr;
+            },
+            Alterlist:function(index){
+	 			var start = index*4;
+	 			var end = (index+1)*4;
+	 			
+	 			var _self = this;
+	 			var resourceId = _self.list[index].resourceId;
+	 			var resourceName = $('.input1')[start].value;
+	 			var resourceCreatetime = $('.input1')[start+1].value;
+	 			var resourceDownloads = $('.input1')[start+2].value;
+	 			var uploaderId = $('.input1')[start+3].value;
+                var resourceCategory = _self.list[index].resourceCategory;
+                var resourceSubject = _self.list[index].resourceSubject;
+                var resourceGrade = _self.list[index].resourceGrade;
+                var resourceAddress = _self.list[index].resourceAddress;
+                var resourceImg = _self.list[index].resourceImg;
+	 			var data1 = {
+	 				"resourceId":resourceId,
+	 				"resourceName":resourceName,
+	 				"resourceCreatetime":resourceCreatetime,
+	 				"resourceDownloads":resourceDownloads,
+	 				"uploaderId":uploaderId,
+	 				"resourceCategory":resourceCategory,
+	 				"resourceSubject":resourceSubject,
+	 				"resourceGrade":resourceGrade,
+	 				"resourceAddress":resourceAddress,
+	 				"resourceImg":resourceImg
+	 			};
+	 			$.ajax({
+	 				type:"POST",
+	 				contentType:"application/json",
+	 				url:"Http://localhost:8080/lenrn/resource/updataResource",
+	 				data:JSON.stringify(data1),
+	 				async:true,
+	 				dataType:"json",
+	 				success:function(data){
+	 					alert("更改成功！");
+	 				},
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+	 			});
+	 		}
+        }
+    })
+
+</script>
+</html>

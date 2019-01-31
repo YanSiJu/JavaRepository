@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>个人设置</title>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		#content,#leftcontent{
+			min-height: 640px;
+		}
+	</style>
+</head>
+<body>
+	<div class="layui-col-md8 layui-col-md-offset2">
+		<div class="layui-col-md2 layui-bg-gray" id="content">		
+			<div class="layui-side-scroll">
+			      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+			    <ul class="layui-nav layui-nav-tree" id="leftcontent" lay-filter="test">
+			        <li class="layui-nav-item layui-nav-itemed">
+			            <a class="" href="javascript:;">个人信息</a>
+			            <dl class="layui-nav-child">
+				            <dd><a href="userMessage.html" target="rightContent">个人信息</a></dd>
+				            <dd><a href="CollectManage.html" target="rightContent">我的收藏</a></dd>
+				            <dd><a href="javascript:;">我的积分</a></dd>
+				            <dd><a href="javascript:;">我的消息</a></dd>
+			            </dl>
+			        </li>
+			        <li class="layui-nav-item">
+			            <a href="javascript:;">我的上传</a>
+			            <dl class="layui-nav-child">
+				            <dd id="Teacher"><a href="TListUpload.html" target="rightContent" onclick="return check();">教学课程</a></dd>
+				            <dd id="Student"><a href="SListUpload.html" target="rightContent">优秀作品</a></dd>
+				        </dl>
+			        </li>
+			        <li class="layui-nav-item">
+			        	<a href="javascript:;">互动社区</a>
+			            <dl class="layui-nav-child">
+				            <dd><a href="javascript:;">列表一</a></dd>
+				            <dd><a href="javascript:;">列表二</a></dd>
+				            <dd><a href="">超链接</a></dd>
+				        </dl>
+			        </li>
+			        <li class="layui-nav-item" id="Admin">
+			        	<a href="javascript:;">教师管理</a>
+			            <dl class="layui-nav-child">
+				            <dd><a href="TeacherManage.html" target="rightContent">教师管理</a></dd>
+				            <dd><a href="TeacherEnroll.html" target="rightContent">教师注册</a></dd>
+				        </dl>
+			        </li>
+			        <li class="layui-nav-item" id="Admin_Student">
+			        	<a href="javascript:;">学生管理</a>
+			            <dl class="layui-nav-child">
+				            <dd><a href="StudentManage.html" target="rightContent">学生管理</a></dd>
+				        </dl>
+			        </li>
+			        <li class="layui-nav-item" id="Admin_Resource">
+			        	<a href="javascript:;">资源管理</a>
+			            <dl class="layui-nav-child">
+				            <dd><a href="SourceManage.html" target="rightContent">教程管理</a></dd>
+				            <dd><a href="ExhibitionManage.html" target="rightContent">作品管理</a></dd>
+				        </dl>
+			        </li>
+			    </ul>
+		   </div>					
+		</div>
+		<div class="layui-col-md10" id="set_content">
+			<iframe name="rightContent" src="userMessage.html" frameborder="0" scrolling="no" width="100%" height="600px"></iframe>
+		</div>
+		<div id="conceal">
+			<input id="useName" type="text"/>
+		</div>
+	</div>
+</body>
+<script>
+	layui.use('element', function(){
+	    var element = layui.element;
+	});
+	
+	var userName = $('#username',window.parent.document).html();
+	var userCategory = $("#category",window.parent.document).text()
+	$(function(){
+		$('#userName').html($('#username',window.parent.document).html());
+		$('#name').val($('#username',window.parent.document).html());
+		$('#useName').val(userName);
+		$('#conceal').hide();
+		check();
+	})
+	
+ 	function check(){
+ 		if(userCategory=="学生"){
+ 			$("#Teacher").hide();
+ 			$("#Admin").hide();
+ 			$('#Admin_Student').hide();
+ 			$('#Admin_Resource').hide();
+ 		}else if(userCategory=="教师"){
+ 			$("#Student").hide();
+ 			$("#Admin").hide();
+ 			$('#Admin_Student').hide();
+ 			$('#Admin_Resource').hide();
+ 		}else{
+ 			$("#Teacher").hide();
+ 			$("#Student").hide();
+ 		}
+ 	}
+</script>
+</html>

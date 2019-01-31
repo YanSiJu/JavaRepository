@@ -1,7 +1,14 @@
 package com.alibaba.entity;
 
-public class GoodsPrice {
-	
+import java.io.Serializable;
+
+public class GoodsPrice implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public GoodsPrice(int goodsId, String type, double price, int quantity, int salesVolume, int state) {
 		super();
 		this.goodsId = goodsId;

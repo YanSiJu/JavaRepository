@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ccsu.mapper.RouteMapper">
+
+
+	<!-- void insertPost(Post p) -->
+	<insert id="insertPost">
+		INSERT INTO
+		`posts`(title,content,time,userId,praiseCount) VALUES
+		(#{title},#{content},#{time},#{userId},#{praiseCount});
+	</insert>
+
+	<!-- List<Post> selectPosts(); -->
+	<select id="selectPosts" resultType="com.alibaba.entity.Post">
+		select * from posts
+	</select>
+
+
+	<!-- void insertComment(PostComment cmmt) -->
+	<insert id="insertComment">
+		INSERT INTO
+		`PostsComment`(postsId,content,time,userId) VALUES
+		(#{postsId},#{content},#{time},#{userId});
+	</insert>
+
+
+	<!-- void praise(@Param("postsId") int postsId) -->
+	<update id="praise">
+		update posts
+		set praiseCount = praiseCount + 1
+		<where>
+			<if test="postsId != null">
+				postsId = #{postsId}
+			</if>
+		</where>
+	</update>
+
+</mapper>
