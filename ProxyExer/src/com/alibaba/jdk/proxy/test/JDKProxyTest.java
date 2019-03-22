@@ -34,6 +34,41 @@ public class JDKProxyTest {
 
 	}
 
+	public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException,
+	IllegalArgumentException, InvocationTargetException {
+		System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
+		// 目标对象
+		ICountService service = new CountServiceImpl();
+		Handler handler = new Handler();
+		// 返回一个代理对象
+		ICountService proxy = (ICountService) handler.bind(service);
+
+		Class<? extends ICountService> clazz = proxy.getClass();
+		Class<?>[] interfaces = clazz.getInterfaces();
+		Method[] methods = clazz.getMethods();
+		Field[] fields = clazz.getFields();
+
+		System.out.println("---------------Interfaces-------------\n");
+		for (Class<?> i : interfaces) {
+			System.out.println(i);
+		}
+
+		System.out.println("\n\n---------------Methods-------------\n");
+		for (Method m : methods) {
+			System.out.println(m);
+		}
+
+		System.out.println("\n---------------Fields-------------\n");
+		for (Field f : fields) {
+			System.out.println(f);
+		}
+
+		Method m = clazz.getMethod("getInvocationHandler", Object.class);
+		System.out.println(m.invoke(null, proxy));
+	}
+
+	
+
 	@Test
 	public void Test() throws NoSuchMethodException, SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {

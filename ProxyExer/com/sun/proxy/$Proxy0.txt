@@ -1,0 +1,222 @@
+public final class com.sun.proxy.$Proxy0 extends java.lang.reflect.Proxy implements com.alibaba.service.ICountService {
+  public com.sun.proxy.$Proxy0(java.lang.reflect.InvocationHandler) throws ;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #8                  // Method java/lang/reflect/Proxy."<init>":(Ljava/lang/reflect/InvocationHandler;)V
+       5: return
+
+  public final boolean equals(java.lang.Object) throws ;
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field java/lang/reflect/Proxy.h:Ljava/lang/reflect/InvocationHandler;
+       4: aload_0
+       5: getstatic     #20                 // Field m1:Ljava/lang/reflect/Method;
+       8: iconst_1
+       9: anewarray     #22                 // class java/lang/Object
+      12: dup
+      13: iconst_0
+      14: aload_1
+      15: aastore
+      16: invokeinterface #28,  4           // InterfaceMethod java/lang/reflect/InvocationHandler.invoke:(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
+      21: checkcast     #30                 // class java/lang/Boolean
+      24: invokevirtual #34                 // Method java/lang/Boolean.booleanValue:()Z
+      27: ireturn
+      28: athrow
+      29: astore_2
+      30: new           #42                 // class java/lang/reflect/UndeclaredThrowableException
+      33: dup
+      34: aload_2
+      35: invokespecial #45                 // Method java/lang/reflect/UndeclaredThrowableException."<init>":(Ljava/lang/Throwable;)V
+      38: athrow
+    Exception table:
+       from    to  target type
+           0    28    28   Class java/lang/Error
+           0    28    28   Class java/lang/RuntimeException
+           0    28    29   Class java/lang/Throwable
+
+  public final void deposit() throws ;
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field java/lang/reflect/Proxy.h:Ljava/lang/reflect/InvocationHandler;
+       4: aload_0
+       5: getstatic     #50                 // Field m5:Ljava/lang/reflect/Method;
+       8: aconst_null
+       9: invokeinterface #28,  4           // InterfaceMethod java/lang/reflect/InvocationHandler.invoke:(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
+      14: pop
+      15: return
+      16: athrow
+      17: astore_1
+      18: new           #42                 // class java/lang/reflect/UndeclaredThrowableException
+      21: dup
+      22: aload_1
+      23: invokespecial #45                 // Method java/lang/reflect/UndeclaredThrowableException."<init>":(Ljava/lang/Throwable;)V
+      26: athrow
+    Exception table:
+       from    to  target type
+           0    16    16   Class java/lang/Error
+           0    16    16   Class java/lang/RuntimeException
+           0    16    17   Class java/lang/Throwable
+
+  public final java.lang.String toString() throws ;
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field java/lang/reflect/Proxy.h:Ljava/lang/reflect/InvocationHandler;
+       4: aload_0
+       5: getstatic     #55                 // Field m2:Ljava/lang/reflect/Method;
+       8: aconst_null
+       9: invokeinterface #28,  4           // InterfaceMethod java/lang/reflect/InvocationHandler.invoke:(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
+      14: checkcast     #57                 // class java/lang/String
+      17: areturn
+      18: athrow
+      19: astore_1
+      20: new           #42                 // class java/lang/reflect/UndeclaredThrowableException
+      23: dup
+      24: aload_1
+      25: invokespecial #45                 // Method java/lang/reflect/UndeclaredThrowableException."<init>":(Ljava/lang/Throwable;)V
+      28: athrow
+    Exception table:
+       from    to  target type
+           0    18    18   Class java/lang/Error
+           0    18    18   Class java/lang/RuntimeException
+           0    18    19   Class java/lang/Throwable
+
+  public final void queryCount() throws ;
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field java/lang/reflect/Proxy.h:Ljava/lang/reflect/InvocationHandler;
+       4: aload_0
+       5: getstatic     #61                 // Field m3:Ljava/lang/reflect/Method;
+       8: aconst_null
+       9: invokeinterface #28,  4           // InterfaceMethod java/lang/reflect/InvocationHandler.invoke:(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
+      14: pop
+      15: return
+      16: athrow
+      17: astore_1
+      18: new           #42                 // class java/lang/reflect/UndeclaredThrowableException
+      21: dup
+      22: aload_1
+      23: invokespecial #45                 // Method java/lang/reflect/UndeclaredThrowableException."<init>":(Ljava/lang/Throwable;)V
+      26: athrow
+    Exception table:
+       from    to  target type
+           0    16    16   Class java/lang/Error
+           0    16    16   Class java/lang/RuntimeException
+           0    16    17   Class java/lang/Throwable
+
+  public final void updateCount() throws ;
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field java/lang/reflect/Proxy.h:Ljava/lang/reflect/InvocationHandler;
+       4: aload_0
+       5: getstatic     #65                 // Field m4:Ljava/lang/reflect/Method;
+       8: aconst_null
+       9: invokeinterface #28,  4           // InterfaceMethod java/lang/reflect/InvocationHandler.invoke:(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
+      14: pop
+      15: return
+      16: athrow
+      17: astore_1
+      18: new           #42                 // class java/lang/reflect/UndeclaredThrowableException
+      21: dup
+      22: aload_1
+      23: invokespecial #45                 // Method java/lang/reflect/UndeclaredThrowableException."<init>":(Ljava/lang/Throwable;)V
+      26: athrow
+    Exception table:
+       from    to  target type
+           0    16    16   Class java/lang/Error
+           0    16    16   Class java/lang/RuntimeException
+           0    16    17   Class java/lang/Throwable
+
+  public final int hashCode() throws ;
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field java/lang/reflect/Proxy.h:Ljava/lang/reflect/InvocationHandler;
+       4: aload_0
+       5: getstatic     #70                 // Field m0:Ljava/lang/reflect/Method;
+       8: aconst_null
+       9: invokeinterface #28,  4           // InterfaceMethod java/lang/reflect/InvocationHandler.invoke:(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
+      14: checkcast     #72                 // class java/lang/Integer
+      17: invokevirtual #75                 // Method java/lang/Integer.intValue:()I
+      20: ireturn
+      21: athrow
+      22: astore_1
+      23: new           #42                 // class java/lang/reflect/UndeclaredThrowableException
+      26: dup
+      27: aload_1
+      28: invokespecial #45                 // Method java/lang/reflect/UndeclaredThrowableException."<init>":(Ljava/lang/Throwable;)V
+      31: athrow
+    Exception table:
+       from    to  target type
+           0    21    21   Class java/lang/Error
+           0    21    21   Class java/lang/RuntimeException
+           0    21    22   Class java/lang/Throwable
+
+  static {} throws ;
+    Code:
+       0: ldc           #78                 // String java.lang.Object
+       2: invokestatic  #84                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       5: ldc           #85                 // String equals
+       7: iconst_1
+       8: anewarray     #80                 // class java/lang/Class
+      11: dup
+      12: iconst_0
+      13: ldc           #78                 // String java.lang.Object
+      15: invokestatic  #84                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      18: aastore
+      19: invokevirtual #89                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      22: putstatic     #20                 // Field m1:Ljava/lang/reflect/Method;
+      25: ldc           #91                 // String com.alibaba.service.ICountService
+      27: invokestatic  #84                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      30: ldc           #92                 // String deposit
+      32: iconst_0
+      33: anewarray     #80                 // class java/lang/Class
+      36: invokevirtual #89                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      39: putstatic     #50                 // Field m5:Ljava/lang/reflect/Method;
+      42: ldc           #78                 // String java.lang.Object
+      44: invokestatic  #84                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      47: ldc           #93                 // String toString
+      49: iconst_0
+      50: anewarray     #80                 // class java/lang/Class
+      53: invokevirtual #89                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      56: putstatic     #55                 // Field m2:Ljava/lang/reflect/Method;
+      59: ldc           #91                 // String com.alibaba.service.ICountService
+      61: invokestatic  #84                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      64: ldc           #94                 // String queryCount
+      66: iconst_0
+      67: anewarray     #80                 // class java/lang/Class
+      70: invokevirtual #89                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      73: putstatic     #61                 // Field m3:Ljava/lang/reflect/Method;
+      76: ldc           #91                 // String com.alibaba.service.ICountService
+      78: invokestatic  #84                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      81: ldc           #95                 // String updateCount
+      83: iconst_0
+      84: anewarray     #80                 // class java/lang/Class
+      87: invokevirtual #89                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      90: putstatic     #65                 // Field m4:Ljava/lang/reflect/Method;
+      93: ldc           #78                 // String java.lang.Object
+      95: invokestatic  #84                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      98: ldc           #96                 // String hashCode
+     100: iconst_0
+     101: anewarray     #80                 // class java/lang/Class
+     104: invokevirtual #89                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+     107: putstatic     #70                 // Field m0:Ljava/lang/reflect/Method;
+     110: return
+     111: astore_1
+     112: new           #100                // class java/lang/NoSuchMethodError
+     115: dup
+     116: aload_1
+     117: invokevirtual #103                // Method java/lang/Throwable.getMessage:()Ljava/lang/String;
+     120: invokespecial #106                // Method java/lang/NoSuchMethodError."<init>":(Ljava/lang/String;)V
+     123: athrow
+     124: astore_1
+     125: new           #110                // class java/lang/NoClassDefFoundError
+     128: dup
+     129: aload_1
+     130: invokevirtual #103                // Method java/lang/Throwable.getMessage:()Ljava/lang/String;
+     133: invokespecial #111                // Method java/lang/NoClassDefFoundError."<init>":(Ljava/lang/String;)V
+     136: athrow
+    Exception table:
+       from    to  target type
+           0   111   111   Class java/lang/NoSuchMethodException
+           0   111   124   Class java/lang/ClassNotFoundException
+}

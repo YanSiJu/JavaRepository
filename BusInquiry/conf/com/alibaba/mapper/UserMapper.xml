@@ -2,19 +2,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="cn.ccsu.mapper.UserMapper">
 
-	<!-- List<User> selectUserByName(@Param("name") String name) -->
-	<select id="selectUserByName" resultType="com.alibaba.entity.User">
-		select * from user
-		<where>
-			<if test="name != null">
-				userName = #{name}
-			</if>
-		</where>
-	</select>
-
-	<!-- void insertUser(User u) -->
-	<insert id="insertUser">
-		INSERT INTO `user`(userName,password,tel,height,weight) VALUES
-		(#{userName},#{password},#{tel},#{height},#{weight});
-	</insert>
+	
 </mapper>

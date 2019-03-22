@@ -5,9 +5,9 @@ import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
-public class CglibProxy implements MethodInterceptor {
+public class CglibInterceptor implements MethodInterceptor {
 
-	public CglibProxy() {
+	public CglibInterceptor() {
 	}
 
 	private Object target;

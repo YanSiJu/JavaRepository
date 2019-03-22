@@ -2,28 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="cn.ccsu.mapper.StationMapper">
 
-	<!-- void insertComment(MenuComment cmmt) -->
-	<insert id="insertComment">
-		INSERT INTO
-		`MenuComment`(menuId,content,date,userId)
-		VALUES
-		(#{menuId},#{content},#{date},#{userId});
-	</insert>
-
-	<!-- List<Menu> selectMenu(); -->
-	<select id="selectMenu" resultType="com.alibaba.entity.Menu">
-		select * from menu
-	</select>
-
-	<!-- void praise(@Param("menuId") int menuId); -->
-	<update id="praise">
-		update menu
-		set praiseCount = praiseCount + 1
-		<where>
-			<if test="menuId != null">
-				menuId = #{menuId}
-			</if>
-		</where>
-	</update>
+	
 
 </mapper>
